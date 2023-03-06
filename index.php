@@ -1,3 +1,4 @@
 <?php
-    echo "Hello negro!";
+    echo "Hello neg!";
+
 ?>
