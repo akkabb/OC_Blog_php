@@ -1,0 +1,39 @@
+/* 
+    GENERALITES
+*/
+:root {
+    /* Blue violet */
+    --blueViolet-100: #434956;
+    --blueViolet-200: #282c34;
+  
+    /* Gray */
+    --gray-100: #ffffff;
+    --gray-200: #272a2e;
+    --gray-300: #222529;
+    --gray-400: #1d1e20;
+  
+    /* Greenish cyan */
+    --greenishCyan-100: #a9f0e2;
+    --greenishCyan-200: #00937e;
+    --greenishCyan-300: #0a4039;
+  
+    /* Cyan */
+    --cyan-100: #0fc5b0;
+  
+    /* Orange */
+    --orange-100: #eb8b3d;
+  /* couleurs à définir */
+      --HarlequinGreen: #42C70F; 
+      --deepMagenta: #C700C7; 
+      --blue: #0085C7; 
+  
+  }
+  .catch_phrase{
+    background-image: url("https://picsum.photos/id/1/200/300");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    height: 5vh;
+    /* background-image: url("http://placebeard.it/g/640x480"); */
+    /* background-color: #C700C7; */
+  }
