@@ -2,11 +2,13 @@
 //src/controllers/add_comment.php
 
 require_once('./src/model/comment.php');
+// require_once();
 
 function addComment(int $post, array $input)
 {
     $author = null;
     $comment = null;
+    // $created_by = null;
     //$creationDate = null;
     if (!empty($input['author']) && !empty($input['comment']))
     {

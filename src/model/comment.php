@@ -41,12 +41,13 @@ function createComment($post, $created_by, $comment)
 {
     $title = '';
     $creationDate = date('Y-m-d H:i:s');
+    $created_by = $_SESSION['id'];
     $status = 'PENDING';
 
     $database = commentDbConnect();
     $statement = $database->prepare(
         "INSERT INTO `comment` (`content`, `title`, `created_at`, `created_by`, `post_id`, `status`) 
-        VALUES ('?', '?', '?', '?', '?', '?')"
+        VALUES (?, ?, ?, ?, ?, ?)"
     );
     var_dump($title);
     echo '<br>';

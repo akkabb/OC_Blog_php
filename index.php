@@ -43,7 +43,7 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
         }elseif ($_GET['action'] === 'addComment'){
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $id = $_GET['id'];
-    
+                    $created_by = $_SESSION['id'];
                     addComment($id, $_POST);
                 } else{
                     throw new Exception('Aucun article');
