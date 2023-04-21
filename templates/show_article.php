@@ -1,6 +1,5 @@
 <?php
     //include __DIR__ . "/../src/connect.php";
-    
 ?>
 
 <!DOCTYPE html>
@@ -14,22 +13,12 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-    <link rel="stylesheet" href="../css/style">
+    <link rel="stylesheet" href="css/style.css">
     <title>Blog PHP Openclassrooms | details de l'article</title>
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="#" class="logo_link"><img src="img/logo.png" alt="logo" class="logo"></a>
-            <nav class="menu">
-                <ul class="menu_list">
-                    <li><a href="/monpremierblogenphp/templates/homepage.php">Accueil</a></li>
-                    <li><a href="/monpremierblogenphp/templates/articles.php">Articles</a></li>
-                    <li><a href="/monpremierblogenphp/templates/login.php">Se connecter</a></li>
-                    <li><a href="/monpremierblogenphp/templates/register.php">S'inscrire</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php require_once('templates/header.php')?>
         <main>
                 <article>
                     <h1><?= htmlspecialchars($post->title); ?></h1>
@@ -42,29 +31,44 @@
                         <?= $post->content;?>
                     </p>
                 </article>
-                <section class="comment_form">
+                <section class="diplay_comments">
                     <h2>Commentaires</h2>
+                    <!-- <?/*php foreach ($comments as $comment) { ?>
+                        <div class="comment_news">
+                            <p><?//=htmlspecialchars($comment->content)?></p>
+                            <p> écrit par <?= //htmlspecialchars($comment->created_by); ?></p>
+                            <p> le : <?=//htmlspecialchars($comment->created_at)?></p>
+                            <p><?= //$comment->id?></p>
+                        </div>
+                    <?php }*/?> -->
+                </section>
+                <section class="comment_form">
                     <div class="comment_area">
                         <p>Aucun commentaire pour le moment</p>
                     </div>
+                    <?php if (isset($_SESSION['username'])){?>
                     <div class="comment_form">
                         <form action="index.php?action=addComment&id=<?= $post->id ?>" method="POST">
                             <legend>Laisser un commentaire sur cet article</legend>
                             <div class="comment_form-author">
                                 <label for="author">Auteur</label>
-                                <input type="text" name="author" id="">
+                                <input type="text" name="author" id="" value=<?= $_SESSION['username'];?>>
                             </div>
                             <div class="comment_form-content">
                                 <label for="comment">Votre message</label>
                                 <textarea name="comment" id="" cols="30" rows="10"></textarea>
                             </div>
+                            <div class="comment_form-submit">
+                                <input type="submit" value="valider">
+                            </div>
                         </form>
                     </div>
+                    <?php } else{?>
+                        <p><a href="index.php?action=register">Créer un compte et vous pourrez laisser un commentaire !</a></p>
+                    <?php }?>
                 </section>
         </main>
-        <footer>
-            <p class="footer">2023 © Tous droits réservés</p>
-        </footer>
+        <? require_once('templates/footer.php') ?>
     </div>
 </body>
 </html>

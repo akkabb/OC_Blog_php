@@ -3,10 +3,11 @@
 
 require_once('./src/model/comment.php');
 
-function addComment(string $post, array $input)
+function addComment(int $post, array $input)
 {
     $author = null;
     $comment = null;
+    //$creationDate = null;
     if (!empty($input['author']) && !empty($input['comment']))
     {
         $author = $input['author'];

@@ -1,7 +1,7 @@
 <?php
-    include __DIR__ . "/../src/model/connect.php";
-    $postRepository = new PostRepository;
-    $posts = $postRepository->getPosts();
+    // include __DIR__ . "/../src/model/connect.php";
+    // $postRepository = new PostRepository;
+    // $posts = $postRepository->getPosts();
 ?>
 
 <!DOCTYPE html>
@@ -15,22 +15,12 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
         <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-        <link rel="stylesheet" href="../css/style.css">
+        <link rel="stylesheet" href="css/style.css">
         <title>Blog PHP | Articles </title>
     </head>
     <body>
         <div class="container">
-            <header>
-                <a href="#" class="logo_link"><img src="../img/logo.png" class="logo" alt="logo"></a>
-                <nav class="menu">
-                    <ul class="menu_list">
-                        <li><a href="/monpremierblogenphp/templates/homepage.php">Accueil</a></li>
-                        <li><a href="/monpremierblogenphp/templates/articles.php">Articles</a></li>
-                        <li><a href="/monpremierblogenphp/templates/login.php">Se connecter</a></li>
-                        <li><a href="/monpremierblogenphp/templates/register.php">S'inscrire</a></li>
-                    </ul>
-                </nav>
-            </header>
+           <?php require('templates/header.php');?>
             <main>
                 <h2>Articles</h2>
                 <h3>Ici vous pouvez consulter les derniers articles :</h3>
@@ -54,16 +44,14 @@
                     </p> -->
                     <p>
                         <!-- <em><a href="index.php?action=post&id=<?= urlencode($post->id) ;?>">Lire l'article</a></em> -->
-                        <em><a href="../index.php?action=post&id=<?= urlencode($post->id) ;?>">Lire l'article</a></em>
+                        <em><a href="index.php?action=post&id=<?= urlencode($post->id) ;?>">Lire l'article</a></em>
                     </p>
                 </div>
                 <?php
                     }//The end of the loop
                 ?>
             </main>
-            <footer>
-                <p class="footer">2023 © Tous droits réservés</p>
-            </footer>
+            <?php require('templates/footer.php');?>
         </div>
     </body>
 </html>

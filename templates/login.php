@@ -52,47 +52,40 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Blog PHP | Se Connecter </title>
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="#" class="logo_link"><img src="../img/logo.png" class="logo" alt="logo"></a>
-            <nav class="menu">
-                <ul class="menu_list">
-                    <li><a href="/monpremierblogenphp/templates/homepage.php">Accueil</a></li>
-                    <li><a href="/monpremierblogenphp/templates/articles.php">Articles</a></li>
-                    <li><a href="/monpremierblogenphp/templates/login.php">Se connecter</a></li>
-                    <li><a href="/monpremierblogenphp/templates/register.php">S'inscrire</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php require('templates/header.php')?>
+
         <main class="main_login">
             <section class="form_login">
                 <h2>Se connecter</h2>
-                <form action="/" method="post">
-                    <label for="email">EMAIL</label>
-                    <br>
-                    <input type="email" name="email" id="loginEmail" value="<?= $email ?? '' ?>">
+                <form action="index.php?action=logUser" method="post">
+                    <div class="login_form-email">
+                        <label for="email">EMAIL</label>
+                        <input type="email" name="email" id="loginEmail" value="<?= $email ?? '' ?>">
+                    </div>
                     <br>
                     <small>L'email utilisé lors de la création de compte</small>
                     <!-- <?php if ($errors['email']) : ?>
                         <p class="text_danger"><?= $errors['email'] ?></p>
                     <?php endif; ?> -->
                     <br>
-                    <label for="password">MOT DE PASSE</label>
+                    <div class="login_form-password">
+                        <label for="password">MOT DE PASSE</label>
+                        <input type="password" name="password" id="loginPassword" value="<?= $password ?? '' ?>">
+                    </div>
                     <br>
-                    <input type="password" name="password" id="loginPassword" value="<?= $password ?? '' ?>">
-                    <br>
-                    <br>
-                    <button type="submit">Se connecter</button>
+                    <div class="login_form-submit">
+                        <button type="submit">Se connecter</button>
+                    </div>
                 </form>
+                <p><a href="index.php?action=register" class="login_link-register">Pas encore inscrit? Cliquez ici pour créer votre compte !</a></p>
             </section>
         </main>
-        <footer>
-            <p class="footer">2023 © Tous droits réservés</p>
-        </footer>
+        <?php require('templates/footer.php');?>
     </div>
 </body>
 

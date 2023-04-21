@@ -1,7 +1,5 @@
 <?php
 
-
-
 ?>
 
 <!DOCTYPE html>
@@ -15,29 +13,20 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <title>Blog PHP | S'inscrire </title>
 </head>
 <body>
     <div class="container">
-        <header>
-            <a href="#" class="logo_link"><img src="../img/logo.png" class="logo" alt="logo"></a>
-            <nav class="menu">
-                <ul class="menu_list">
-                    <li><a href="/monpremierblogenphp/templates/homepage.php">Accueil</a></li>
-                    <li><a href="/monpremierblogenphp/templates/articles.php">Articles</a></li>
-                    <li><a href="/monpremierblogenphp/templates/login.php">Se connecter</a></li>
-                    <li><a href="/monpremierblogenphp/templates/register.php">S'inscrire</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php require_once('templates/header.php')?>
+
         <main>
             <section class="form_register">
                 <h2>S'inscrire</h2>
-                <form action="/" method="post">
+                <form action="index.php?action=addUser" method="post">
                     <label for="userName">NOM D'UTILISATEUR</label>
                     <br>
-                    <input type="text" name="userName" id="">
+                    <input type="text" name="username" id="">
                     <br>
                     <label for="email">EMAIL</label>
                     <br>
@@ -63,9 +52,7 @@
                 </form>
             </section>
         </main>
-        <footer>
-            <p class="footer">2023 © Tous droits réservés</p>
-        </footer>
+        <?php require('templates/footer.php');?>
     </div>
 </body>
 

@@ -1,6 +1,6 @@
 <?php
 
-require_once('../MonPremierBlogEnPHP/src/lib/database.php');
+require_once('src/lib/database.php');
 // require_once "/lib/database.php";
 
 class Post

@@ -45,30 +45,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="css/style.css">
     <!-- <title>Blog PHP Openclassrooms</title> -->
     <?php $title = "Blog PHP Openclassrooms"; ?>
 </head>
 <body>
-    <?php ob_start(); ?>
     <div class="container">
-        <header>
-            <a href="monpremierblogenphp/templates/homepage.php" class="logo_link"><img src="../img/logo.png" alt="logo" class="logo"></a>
-            <nav class="menu">
-                <ul class="menu_list">
-                    <li><a href="/monpremierblogenphp/templates/homepage.php">Accueil</a></li>
-                    <li><a href="/monpremierblogenphp/templates/articles.php">Articles</a></li>
-                    <li><a href="/monpremierblogenphp/templates/login.php">Se connecter</a></li>
-                    <li><a href="/monpremierblogenphp/templates/register.php">S'inscrire</a></li>
-                </ul>
-            </nav>
-        </header>
+        <?php require_once('templates/header.php')?>
         <main>
             <section class="catch_phrase">
                 <h1>Martin Birikorang</h1>
+                <!-- <?php
+                    // if (isset($_SESSION['username']))
+                    // {
+                    //     echo "Bienvenue " . $_SESSION['username'];
+                    // }
+                ?> -->
             </section>
             <section class="about_me">
-            <h2>Bienvenue sur mon blog !</h2>
+            <h2>Bienvenue <?php if (isset($_SESSION['accountCreated'])){echo $_SESSION['accountCreated'];} unset($_SESSION['accountCreated']);?> sur mon blog !</h2>
                 <div class="about_sentences">
                     <p class="about_paragraph">
                         <span class="bracket">{</span>
@@ -126,13 +121,8 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
             </section>
             <!-- A consever pour utiliser pour les posts <img src="https://picsum.photos/200/300" alt="test image "> -->
         </main>
+        <?php require_once('templates/footer.php') ?>
         
-        <footer>
-            <p class="footer">2023 © Tous droits réservés</p>
-        </footer>
     </div>
-    <?php $content = ob_get_clean(); ?>
-
-    <?php require('layout.php')?>
 </body>
 </html>

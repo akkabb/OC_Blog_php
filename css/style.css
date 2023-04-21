@@ -243,3 +243,6 @@ LOGGIN PAGE
   align-items: center;
   flex-grow: 1;
 }
+.login_link-register{
+  color: var(--gray-100);
+}

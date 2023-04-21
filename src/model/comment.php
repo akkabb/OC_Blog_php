@@ -1,11 +1,16 @@
 <?php
 //  src/model/comment.php
 
+use App\src\model\User\UserRepository;
+
 class comment
-{
-    public string $author;
+{   
+    public int $id;
+    public string $created_by;
     public string $creationDate;
     public string $comment;
+    public int $post;
+    public string $title;
 }
 
 function getComments(string $post): array
@@ -13,7 +18,7 @@ function getComments(string $post): array
     $database = commentDbConnect(); 
 
     $statement = $database->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-    created_at, created_by, FROM comment WHERE id = ? ORDER BY created_at DESC");
+    created_at, created_by FROM comment WHERE id = ? ORDER BY created_at DESC");
 
     $statement->execute([$post]);
 
@@ -22,7 +27,7 @@ function getComments(string $post): array
     while (($row = $statement->fetch()))
     {
         $comment = new Comment();
-        $comment->author = $row['created_by'];
+        $comment->created_by = $row['created_by'];
         $comment->creationDate = $row['created_at'];
         $comment->comment = $row['content'];
     
@@ -32,13 +37,32 @@ function getComments(string $post): array
     return $comments;
 }
 
-function createComment(string $post, string $author, string $comment)
+function createComment($post, $created_by, $comment)
 {
+    $title = '';
+    $creationDate = date('Y-m-d H:i:s');
+    $status = 'PENDING';
+
     $database = commentDbConnect();
     $statement = $database->prepare(
-        'INSERT INTO comments(id, created_by, content, created_at) VALUES(?, ?, ?, NOW())'
+        "INSERT INTO `comment` (`content`, `title`, `created_at`, `created_by`, `post_id`, `status`) 
+        VALUES ('?', '?', '?', '?', '?', '?')"
     );
-    $affectedLines = $statement->execute([$post, $author, $comment]);
+    var_dump($title);
+    echo '<br>';
+    var_dump($comment);
+    echo '<br>';
+    var_dump($creationDate);
+    echo '<br>';
+    var_dump($created_by);
+    echo '<br>';
+    var_dump($post);
+    echo '<br>';
+    var_dump($status);
+    echo '<br>';
+    $affectedLines = $statement->execute([
+     $comment, $title, $creationDate, $created_by, $post, $status
+    ]);
 
     return ($affectedLines > 0);
 }

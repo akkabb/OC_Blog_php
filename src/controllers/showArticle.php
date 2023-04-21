@@ -25,5 +25,5 @@ function post(string $id)
     $postRepository->connection = new DatabaseConnection();
     $post = $postRepository->getPost($id);
     // $comments = getComments($id);
-    require('./templates/show_article.php');
+    require('templates/show_article.php');
 }
