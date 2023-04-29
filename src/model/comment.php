@@ -1,9 +1,13 @@
 <?php
 //  src/model/comment.php
+namespace App\Model\Comment;
 
-use App\src\model\User\UserRepository;
+require_once './src/lib/database.php';
 
-class comment
+
+//use App\Lib\Database\DatabaseConnection;
+
+class Comment
 {   
     public int $id;
     public string $created_by;
@@ -13,61 +17,93 @@ class comment
     public string $title;
 }
 
-function getComments(string $post): array
+class CommentRepository
 {
-    $database = commentDbConnect(); 
+    public \DatabaseConnection $connection;
 
-    $statement = $database->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-    created_at, created_by FROM comment WHERE id = ? ORDER BY created_at DESC");
-
-    $statement->execute([$post]);
-
-    $comments = [];
-
-    while (($row = $statement->fetch()))
+    function getComments(string $post): array
     {
-        $comment = new Comment();
-        $comment->created_by = $row['created_by'];
-        $comment->creationDate = $row['created_at'];
-        $comment->comment = $row['content'];
-    
-        $comments[] = $comment;
+        
+        $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        created_at, created_by, post_id FROM comment WHERE post_id = ? ORDER BY created_at DESC");
+
+        $statement->execute([$post]);
+
+        $comments = [];
+
+        while (($row = $statement->fetch()))
+        {
+            $comment = new Comment();
+            $comment->id = $row['id'];
+            $comment->created_by = $row['created_by'];
+            $comment->creationDate = $row['created_at'];
+            $comment->comment = $row['content'];
+            $comment->title = $row['title'];
+            $comment->post = $row['post_id'];
+         
+            $comments[] = $comment;
+        }
+
+        return $comments;
     }
 
-    return $comments;
+    function getAllComments(): array
+    {
+        $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        created_at, created_by, post_id FROM comment ORDER BY created_at DESC");
+
+        $statement->execute();
+
+        $comments = [];
+
+        while (($row = $statement->fetch()))
+        {
+            $comment = new Comment();
+            $comment->created_by = $row['created_by'];
+            $comment->creationDate = $row['created_at'];
+            $comment->comment = $row['content'];
+            $comment->title = $row['title'];
+            $comment->post = $row['post_id'];
+        
+            $comments[] = $comment;
+        }
+
+        return $comments;
+    }
+
+    function createComment($post, $created_by, $comment)
+    {
+        $title = '';
+        $creationDate = date('Y-m-d H:i:s');
+        $created_by = $_SESSION['id'];
+        $status = 'PENDING';
+
+        $statement = $this->connection->getConnection()->prepare(
+            "INSERT INTO `comment` (`content`, `title`, `created_at`, `created_by`, `post_id`, `status`) 
+            VALUES (?, ?, ?, ?, ?, ?)"
+        );
+        var_dump($title);
+        echo '<br>';
+        var_dump($comment);
+        echo '<br>';
+        var_dump($creationDate);
+        echo '<br>';
+        var_dump($created_by);
+        echo '<br>';
+        var_dump($post);
+        echo '<br>';
+        var_dump($status);
+        echo '<br>';
+        $affectedLines = $statement->execute([
+        $comment, $title, $creationDate, $created_by, $post, $status
+        ]);
+
+        return ($affectedLines > 0);
+    }
+
 }
 
-function createComment($post, $created_by, $comment)
-{
-    $title = '';
-    $creationDate = date('Y-m-d H:i:s');
-    $created_by = $_SESSION['id'];
-    $status = 'PENDING';
-
-    $database = commentDbConnect();
-    $statement = $database->prepare(
-        "INSERT INTO `comment` (`content`, `title`, `created_at`, `created_by`, `post_id`, `status`) 
-        VALUES (?, ?, ?, ?, ?, ?)"
-    );
-    var_dump($title);
-    echo '<br>';
-    var_dump($comment);
-    echo '<br>';
-    var_dump($creationDate);
-    echo '<br>';
-    var_dump($created_by);
-    echo '<br>';
-    var_dump($post);
-    echo '<br>';
-    var_dump($status);
-    echo '<br>';
-    $affectedLines = $statement->execute([
-     $comment, $title, $creationDate, $created_by, $post, $status
-    ]);
-
-    return ($affectedLines > 0);
-}
-
+/*
 function commentDbConnect()
 {
     $dns = 'mysql:host=localhost; dbname=blog';
@@ -80,3 +116,4 @@ function commentDbConnect()
     ]);
     return $pdo;
 }
+*/

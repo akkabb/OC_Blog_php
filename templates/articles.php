@@ -44,7 +44,7 @@
                     </p> -->
                     <p>
                         <!-- <em><a href="index.php?action=post&id=<?= urlencode($post->id) ;?>">Lire l'article</a></em> -->
-                        <em><a href="index.php?action=post&id=<?= urlencode($post->id) ;?>">Lire l'article</a></em>
+                        <em><a class="article_news_link"  href="index.php?action=post&id=<?= urlencode($post->id) ;?>">Lire l'article</a></em>
                     </p>
                 </div>
                 <?php

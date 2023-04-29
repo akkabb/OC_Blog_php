@@ -8,6 +8,7 @@ require_once('./src/controllers/logout.php');
 require_once('./src/controllers/register.php');
 require_once('./src/controllers/error.php');
 require_once('./src/controllers/showArticle.php');
+require_once('./src/controllers/admin_page.php');
 
 
 if (isset($_GET['action']) && $_GET['action'] !== '')
@@ -20,7 +21,15 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
                 throw new Exception(('Aucun article'));
             }
     
-        } elseif($_GET['action'] === 'list'){
+        } elseif ($_GET['action'] === 'admin'){
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === '1'){
+                admin();
+            }else{
+                homepage();
+            }
+        }
+        
+        elseif($_GET['action'] === 'list'){
                 displayArticles();
         }elseif ($_GET['action'] === 'login'){
                 login();
@@ -32,7 +41,7 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             if (isset($_POST)){
                 register($_POST);
             }else{
-                error();
+                 error();
             }
         }elseif ($_GET['action'] === 'logUser'){
             if (isset($_POST)){
@@ -49,7 +58,8 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
                     throw new Exception('Aucun article');
                 }
         } else{
-            throw new Exception("ERREUR 404 : la page que vous recherchez n'existe pas.");
+            //throw new Exception("ERREUR 404 : la page que vous recherchez n'existe pas.");
+            throw error();
         }
 } else {
     homepage();

@@ -61,6 +61,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                     //     echo "Bienvenue " . $_SESSION['username'];
                     // }
                 ?> -->
+                <?php
+                // if (isset($_SESSION['admin']))
+                // {
+                //     var_dump($_SESSION['admin']);
+
+                // }
+                var_dump($_SESSION['username']);
+                var_dump($_SESSION['user_role']);
+                //var_dump($_SESSION['admin']);
+                ?>
             </section>
             <section class="about_me">
             <h2>Bienvenue <?php if (isset($_SESSION['accountCreated'])){echo $_SESSION['accountCreated'];} unset($_SESSION['accountCreated']);?> sur mon blog !</h2>

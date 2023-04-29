@@ -3,8 +3,9 @@
 
 require_once 'src/lib/database.php';
 require_once 'src/model/user.php';
+// require_once 'src/controllers/error.php'; // utilisé pour la page error
 
-use App\src\model\User\UserRepository;
+use App\Model\User\UserRepository;
 
 function login()
 {
@@ -34,7 +35,8 @@ function logUser(array $input)
     $success = $userRepository->loginUser($email, $password);
     var_dump($success);
     if (!$success) {
-        throw new Exception('Impossible se connecter à votre compte !');
+        //throw new Exception('Impossible se connecter à votre compte !');
+        //error();
     } else {
         header('Location: index.php');
     }

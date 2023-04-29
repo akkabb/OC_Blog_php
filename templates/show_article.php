@@ -14,6 +14,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
     <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/articles.css">
     <title>Blog PHP Openclassrooms | details de l'article</title>
 </head>
 <body>
@@ -31,21 +32,27 @@
                         <?= $post->content;?>
                     </p>
                 </article>
-                <section class="diplay_comments">
+                <section class="display_comments" id="display_comments">
                     <h2>Commentaires</h2>
-                    <!-- <?/*php foreach ($comments as $comment) { ?>
-                        <div class="comment_news">
-                            <p><?//=htmlspecialchars($comment->content)?></p>
-                            <p> écrit par <?= //htmlspecialchars($comment->created_by); ?></p>
-                            <p> le : <?=//htmlspecialchars($comment->created_at)?></p>
-                            <p><?= //$comment->id?></p>
+                    <?php if (!empty($comments)) {?>
+                        <?php //var_dump($comments)?>
+                        <?php foreach ($comments as $comment) { ?>
+                            <div class="comment_news">
+                                <div class="comment_contentWrap">
+                                    <p><?= htmlspecialchars($comment->comment); ?></p>
+                                </div>
+                                <p> écrit par <?= htmlspecialchars($comment->created_by); ?></p>
+                                <p> le : <?= htmlspecialchars($comment->creationDate); ?></p>
+                                <p><?php /* $comment->id*/ ?></p>
+                            </div>
+                        <?php }?> 
+                    <?php } else {?>
+                        <div class="comment_area">
+                            <p>Aucun commentaire pour le moment</p>
                         </div>
-                    <?php }*/?> -->
+                    <?php } ?>
                 </section>
                 <section class="comment_form">
-                    <div class="comment_area">
-                        <p>Aucun commentaire pour le moment</p>
-                    </div>
                     <?php if (isset($_SESSION['username'])){?>
                     <div class="comment_form">
                         <form action="index.php?action=addComment&id=<?= $post->id ?>" method="POST">
@@ -64,7 +71,7 @@
                         </form>
                     </div>
                     <?php } else{?>
-                        <p><a href="index.php?action=register">Créer un compte et vous pourrez laisser un commentaire !</a></p>
+                        <p ><a href="index.php?action=register" style="color:#fff;" class="comment_allowComment">Créer un compte et vous pourrez laisser un commentaire !</a></p>
                     <?php }?>
                 </section>
         </main>

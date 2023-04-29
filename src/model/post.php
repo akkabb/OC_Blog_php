@@ -1,7 +1,8 @@
 <?php
+namespace App\Model\Post;
 
 require_once('src/lib/database.php');
-// require_once "/lib/database.php";
+
 
 class Post
 {
@@ -15,7 +16,7 @@ class Post
 
 class PostRepository
 {
-    public DatabaseConnection $connection;
+    public \DatabaseConnection $connection;
 
     public function getPost(/*PostRepository $this, */ string $id): Post
     {
@@ -62,6 +63,14 @@ class PostRepository
         return $posts;
     }
 
+    public function createArticle($title, $leadSentence, $content)
+    {
+        $statement = $this->connection->getConnection()->prepare(
+
+        );
+        $affectedLines = $statement->execute([$title, $leadSentence, $content]);
+        return ($affectedLines > 0);
+    }
     // We connect to the database
     
     // public function dbConnect()

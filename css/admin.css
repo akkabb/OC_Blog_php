@@ -1,0 +1,16 @@
+
+.main_Admin{
+    background: var(--gray-100);
+    color: var(--gray-200);
+}
+.admin_greetings h2{
+    margin: 1em 0;
+}
+.comment_Admin, .user_Admin{
+    margin: 1em 0;
+    padding: 2em;
+
+}
+.comment_displayAll{
+    color: var(--gray-200);
+}

@@ -34,6 +34,7 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+  letter-spacing: 0.05rem;
 }
   
 /* .catch_phrase{
@@ -245,4 +246,61 @@ LOGGIN PAGE
 }
 .login_link-register{
   color: var(--gray-100);
+}
+/*******
+POST PART
+****/
+.article_news{
+  margin: 5em;
+
+}
+.article_news p{
+  padding: 1em;
+}
+.article_news_link{
+  color: #fff;
+  font-size: 1.5rem;
+}
+
+/************
+
+COMMENT PART
+
+************/
+.display_comments{
+  margin: 5em;
+}
+.display_comments h2{
+  margin-bottom: 1em;
+}
+.comment_form{
+  margin-bottom: 1em;
+}
+.comment_allowComment{
+  color: #fff;
+}
+
+/******
+ERROR
+
+*******/
+.error_Back{
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
+  font-size: 3rem;
+  text-transform: uppercase;
+}
+
+/********
+FOOTER
+*********/
+
+.footer_link{
+  color: var(--deepMagenta);
+  text-decoration: none;
+  transition: all .3s;
+}
+.footer_link:hover{
+  border-bottom: 1px solid var(--cyan-100);
 }
