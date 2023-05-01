@@ -33,10 +33,10 @@
                         <p> écrit par <?= htmlspecialchars($comment->created_by); ?></p>
                         <p> le : <?= htmlspecialchars($comment->creationDate); ?></p>
                             <span class="comment_Admin_validate">
-                                <a href="index.php?action=submitComment&id=<?=$comment->identifier?>">Valider</a>
+                                <a href="index.php?action=submitComment&id=<?=$comment->id?>">Valider</a>
                             </span>
                             <span class="comment_Admin_delete">
-                                <a href="index.php?action=delete&id=<?=$comment->identifier?>">Supprimer</a>
+                                <a href="index.php?action=delete&id=<?=$comment->id?>">Supprimer</a>
                             </span>
                     </article>
                 <?php } ?>
@@ -49,10 +49,10 @@
                         <p> <?= htmlspecialchars($user->username); ?></p>
                         <p> <?= htmlspecialchars($user->role); ?></p>
                             <span class="user_PassAdmin">
-                                <a href="index.php?action=passAdmin&id=<?=$user->identifier?>">Passer ADMIN</a>
+                                <a href="index.php?action=passAdmin&id=<?=$user->id?>">Passer ADMIN</a>
                             </span>
                             <span class="admin_PassUser">
-                                <a href="index.php?action=passUser&id=<?=$user->identifier?>">Passer USER</a>
+                                <a href="index.php?action=passUser&id=<?=$user->id?>">Passer USER</a>
                             </span>
                     </article>
                 <?php } ?>

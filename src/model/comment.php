@@ -24,8 +24,13 @@ class CommentRepository
     function getComments(string $post): array
     {
         
-        $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-        created_at, created_by, post_id FROM comment WHERE post_id = ? ORDER BY created_at DESC");
+        $statement = $this->connection->getConnection()->prepare("SELECT title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        created_at, first_name, post_id 
+        FROM comment 
+        INNER JOIN user ON user.id = comment.id 
+        WHERE post_id = ? 
+        ORDER BY created_at DESC"
+        );
 
         $statement->execute([$post]);
 
@@ -34,8 +39,8 @@ class CommentRepository
         while (($row = $statement->fetch()))
         {
             $comment = new Comment();
-            $comment->id = $row['id'];
-            $comment->created_by = $row['created_by'];
+            // $comment->id = $row['id'];
+            $comment->created_by = $row['first_name'];
             $comment->creationDate = $row['created_at'];
             $comment->comment = $row['content'];
             $comment->title = $row['title'];
@@ -64,6 +69,7 @@ class CommentRepository
             $comment->comment = $row['content'];
             $comment->title = $row['title'];
             $comment->post = $row['post_id'];
+            $comment->id = $row['id'];
         
             $comments[] = $comment;
         }
@@ -99,6 +105,14 @@ class CommentRepository
         ]);
 
         return ($affectedLines > 0);
+    }
+
+    function submitComment()
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            "UPDATE comments SET "
+        );
+
     }
 
 }

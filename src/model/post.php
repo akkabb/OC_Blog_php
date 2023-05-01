@@ -44,7 +44,7 @@ class PostRepository
         
         //We retrieve the last blog posts
         $statement = $this->connection->getConnection()->query("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-        created_at, created_by, lead_sentence FROM post ORDER BY created_at DESC LIMIT 0,5");
+        created_at, created_by, lead_sentence FROM post  ORDER BY created_at DESC LIMIT 0,5");
     
         $posts = [];
         while (($row = $statement->fetch()))
