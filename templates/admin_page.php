@@ -26,7 +26,7 @@
                 <h2> Bienvenue  <?php  if (isset($_SESSION['username'])){echo $_SESSION['username'] ;}?></h2>
             </span>
             <section class="comment_Admin">
-                <h3 class="comment_displayAll_title">La liste de tous les commentaires</h3>
+                <h2 class="comment_displayAll_title">La liste de tous les commentaires</h2>
                 <?php foreach ($comments as $comment) {?>
                     <article class="comment_displayAll">
                         <p><?= htmlspecialchars($comment->comment); ?></p>
@@ -42,18 +42,20 @@
                 <?php } ?>
             </section>
             <section class="user_Admin">
-                <h3 class="user_displayAll_title">La liste de tous les utilisateurs du blog</h3>
+                <h2 class="user_displayAll_title">La liste de tous les utilisateurs du blog</h2>
                 <?php //var_dump($users)?>
                 <?php foreach ($users as $user) {?>
                     <article class="user_displayAll">
                         <p> <?= htmlspecialchars($user->username); ?></p>
-                        <p> <?= htmlspecialchars($user->role); ?></p>
+                        <?php if ($user->role === '2') { ?>
                             <span class="user_PassAdmin">
                                 <a href="index.php?action=passAdmin&id=<?=$user->id?>">Passer ADMIN</a>
                             </span>
+                        <?php } else { ?>    
                             <span class="admin_PassUser">
                                 <a href="index.php?action=passUser&id=<?=$user->id?>">Passer USER</a>
                             </span>
+                        <?php } ?>
                     </article>
                 <?php } ?>
             </section>

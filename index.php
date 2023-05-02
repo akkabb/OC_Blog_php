@@ -1,5 +1,9 @@
 <?php
+// echo phpinfo();
+// exit();
 session_start();
+// var_dump($_SESSION);
+// exit();
 require_once('./src/controllers/add_comment.php');
 require_once('./src/controllers/homepage.php');
 require_once('./src/controllers/articles.php');
@@ -9,6 +13,7 @@ require_once('./src/controllers/register.php');
 require_once('./src/controllers/error.php');
 require_once('./src/controllers/showArticle.php');
 require_once('./src/controllers/admin_page.php');
+require_once('./src/controllers/switch_userType.php');
 
 
 if (isset($_GET['action']) && $_GET['action'] !== '')
@@ -22,13 +27,26 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             }
     
         } elseif ($_GET['action'] === 'admin'){
-            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === '1'){
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1){
                 admin();
             }else{
                 homepage();
             }
+        }elseif ($_GET['action'] === 'passAdmin'){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                (new SwitchToAdmin())->execute($id);
+            } else {
+                throw new Exception('Impossible de passer en Admin');
+            }
+        }elseif ($_GET['action'] === 'passUser'){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                (new SwitchToUser())->execute($id);
+            } else {
+                throw new Exception('Impossible de passer en User');
+            }
         }
-        
         elseif($_GET['action'] === 'list'){
                 displayArticles();
         }elseif ($_GET['action'] === 'login'){

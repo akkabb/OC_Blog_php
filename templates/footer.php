@@ -1,6 +1,6 @@
 <footer>
      <?php 
-         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === '1') {?>
+         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1) {?>
              <div class="footer_admin">
                  <a href="index.php?action=addArticle" class="footer_link">AJOUTER UN ARTICLE</a>
                      <span> | </span>

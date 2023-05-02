@@ -71,22 +71,7 @@ class PostRepository
         $affectedLines = $statement->execute([$title, $leadSentence, $content]);
         return ($affectedLines > 0);
     }
-    // We connect to the database
-    
-    // public function dbConnect()
-    // {
-    //     $dns = 'mysql:host=localhost; dbname=blog';
-    //     $user = 'root';
-    //     $password = 'root';
-    
-    //     if ($this->database === null)
-    //     {
-    //         $this->database = new PDO($dns, $user, $password, [
-    //             PDO::ATTR_ERRMODE => PDO ::ERRMODE_EXCEPTION,
-    //             PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    //         ]);
-    //     }
-    // }
+
 }
 
 

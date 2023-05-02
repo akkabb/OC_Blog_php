@@ -17,6 +17,10 @@ class User{
 class UserRepository{
     public \DatabaseConnection $connection;
 
+    public const USER_TYPE_ADMIN = 1;
+
+    public const USER_TYPE_USER = 2;
+
     public function getUser(string $id)
     {
         $statement =  $this->connection->getConnection()->prepare(
@@ -68,12 +72,7 @@ class UserRepository{
 
     public function createUser($username, $email, $firstname, $lastname, $password)
     {
-        if ($role = 2)
-        {
-            $role = "user";
-        }else if ($role = 1){
-            $role = "admin";
-        }
+        
         $statement = $this->connection->getConnection()->prepare(
             "INSERT INTO `user`( `username`, `email`, `first_name`, `last_name`, `password`, `role`) 
                 VALUES (:username, :email, :first_name, :last_name, :password, :role )"
@@ -84,7 +83,7 @@ class UserRepository{
             ':first_name' => $firstname, 
             ':last_name' => $lastname,
             ':password' => $password, 
-            ':role' => $role, // if {role == 2 == user} else if{role == 1 == Admin};
+            ':role' => self::USER_TYPE_USER,
         ]);
         $_SESSION['accountCreated'] = $firstname;
 
@@ -99,6 +98,15 @@ class UserRepository{
         $affectedLines = $statement->execute([$id]);
         return ($affectedLines > 0);
 
+    }
+
+    public function passUser($id)
+    {
+        $statement = $this->connection->getConnection()->prepare(
+            'UPDATE user SET `role` = "2" WHERE id = ?' 
+        );
+        $affectedLines = $statement->execute([$id]);
+        return ($affectedLines > 0);
     }
 
     public function loginUser(string $email)
