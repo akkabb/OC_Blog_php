@@ -6,12 +6,13 @@ require_once('src/lib/database.php');
 
 class Post
 {
+    public int $id;
     public string $title;
     public string $content;
     public string $creationDate;
     public string $creationBy;
     public string $leadSentence;
-    public int $id;
+    public string $slug;
 }
 
 class PostRepository
@@ -65,13 +66,38 @@ class PostRepository
 
     public function createArticle($title, $leadSentence, $content)
     {
+        $creationDate = date('Y-m-d H:i:s');
+        $creationBy = $_SESSION['id'];
+        $slug = '';
+        $updateDate = date('Y-m-d H:i:s');
         $statement = $this->connection->getConnection()->prepare(
-
+            "INSERT INTO `post`( `title`, `content`, `created_at`, `created_by`, `slug`, `lead_sentence`, `updated_at`) 
+            -- VALUES (':title',':content',':created_at',':created_by',':slug',':lead_sentence',':updated_at')
+            VALUES (?, ?, ?, ?, ?, ?, ?)"
         );
-        $affectedLines = $statement->execute([$title, $leadSentence, $content]);
+        // $affectedLines = $statement->execute([
+        //     ':title' => $title,
+        //     ':content' => $content,
+        //     ':created_at' => $creationDate,
+        //     ':created_by' => $creationBy,
+        //     ':slug' => $slug,
+        //     ':lead_sentence' => $leadSentence, 
+        //     ':updated_at' => $updateDate,
+        // ]);
+            $affectedLines = $statement->execute([$title, $content, $creationDate, $creationBy, $slug, $leadSentence, $updateDate]);
+        
         return ($affectedLines > 0);
     }
 
+    public function deleteArticle(int $id)
+    {
+        $statement = $this->connection->getConnection()->prepare("
+            DELETE FROM `post` WHERE id = ?
+        ");
+
+        $affectedLines = $statement->execute([$id]);
+        return ($affectedLines > 0);
+    }
 }
 
 

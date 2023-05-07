@@ -15,3 +15,20 @@ SHOW-ARTICLE PAGE
 .comment_contentWrap p{
     font-size: 1.2rem;
 }
+/**********************************************************
+ BUTTONS FOR ADMIN USE UPDATE AND DELETE
+ 
+*********************************************************/
+
+.article_AdminEdit{
+    font-size: 1.5rem;
+    margin-top: 2em;
+}
+ .article_modify, .article_delete{
+    color: var(--deepMagenta);
+    text-decoration: none;
+    transition: all .3s;
+  }
+  .article_modify:hover, .article_delete:hover{
+    border-bottom: 1px solid var(--cyan-100);
+  }

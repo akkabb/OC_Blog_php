@@ -31,6 +31,16 @@
                     <p>
                         <?= $post->content;?>
                     </p>
+                    <?php 
+                        if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1) {?>
+                            <div class="article_AdminEdit">
+                                <strong><a href="index.php?action=updateArticle&id=<?=$post->id?>" class="article_modify">Modifier</a></strong>
+                                
+                                <strong><a href="index.php?action=deleteArticle&id=<?=$post->id?>" class="article_delete">Supprimer</a></strong>
+                            </div></br> 
+                        <?php 
+                        }
+                    ?> 
                 </article>
                 <section class="display_comments" id="display_comments">
                     <h2>Commentaires</h2>

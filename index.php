@@ -4,6 +4,8 @@
 session_start();
 // var_dump($_SESSION);
 // exit();
+require_once('./src/controllers/add_post.php');
+require_once('./src/controllers/delete_post.php');
 require_once('./src/controllers/add_comment.php');
 require_once('./src/controllers/homepage.php');
 require_once('./src/controllers/articles.php');
@@ -32,7 +34,21 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             }else{
                 homepage();
             }
-        }elseif ($_GET['action'] === 'passAdmin'){
+        } elseif($_GET['action'] === 'addPost'){
+            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                addPostPost($_POST);
+            } else {
+                addPostGet();
+            }
+        }elseif( $_GET['action'] === 'deleteArticle'){
+            if (isset($_GET['id']) && $_GET['id'] > 0){
+                $id = $_GET['id'];
+                deletePost($id);
+            }else{
+                error();
+            }
+        }
+        elseif ($_GET['action'] === 'passAdmin'){
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 (new SwitchToAdmin())->execute($id);
