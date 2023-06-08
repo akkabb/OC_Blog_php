@@ -1,37 +1,3 @@
-<?php
-const ERROR_REQUIRED = 'Veuillez renseigner ce champ';
-const ERROR_EMAIL = 'Veuillez entrer une adresse mail valide';
-$errors = [
-	'email' => '',
-	'firstname' => '',
-	'lastname' => '',
-	'message' => ''
-];
-
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-	$_POST = filter_input_array(INPUT_POST, [
-		'email' => FILTER_SANITIZE_EMAIL,
-	'firstname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-	'lastname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-	'message' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
-	]);
-
-	$email = $_POST['email'] ?? '';
-	$firstname = $_POST['firstname'] ?? '';
-	$lastname = $_POST['lastname'] ?? '';
-	$message = $_POST['message'] ?? '';
-
-	if (!$email)
-		$errors['email'] = ERROR_EMAIL;
-	if (!$firstname)
-		$errors['firstname'] = ERROR_REQUIRED;
-	if (!$lastname)
-		$errors['lastname'] = ERROR_REQUIRED;
-	if (!$message)
-		$errors['message'] = ERROR_REQUIRED;
-}
-
-?>
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -107,18 +73,17 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <p class="text_danger"><?= $errors['email'] ?></p>
                     <?php endif; ?>
                     <br>
-                    <div class="form_name">
                         <label for="firstname">prenom</label>
-                        <input type="text" name="firstname" id="firstname" value="<?= $firstname ?? '' ?> ">
+                        <input type="text" name="firstname" id="firstname" value="<?= $firstname ?? '' ?>">
                         <?php if ($errors['firstname']) : ?>
                             <p class="text_danger"><?= $errors['firstname'] ?></p>
-                        <?php endif; ?>
+                        <?php endif; ?> 
+                    <br>
                         <label for="lastname">nom</label>
                         <input type="text" name="lastname" id="lastname" value="<?= $lastname ?? '' ?>">
                         <?php if ($errors['lastname']) : ?>
                             <p class="text_danger"><?= $errors['lastname'] ?></p>
                         <?php endif; ?>
-                    </div>
                     <br>
                     <label for="message">message</label>
                     <textarea name="message" id="" cols="30" rows="10"></textarea>
@@ -126,6 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
                         <p class="text_danger"><?= $errors['message'] ?></p>
                     <?php endif; ?>
                     <br>
+                    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
                     <button type="submit">Envoyer</button>
                 </form>
             </section>

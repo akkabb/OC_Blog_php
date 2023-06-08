@@ -48,6 +48,7 @@
                     <input type="password" name="password" id="loginPassword" value="<?= $password ?? '' ?>">
                     <br>
                     <br>
+                    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
                     <button type="submit">S'inscrire</button>
                 </form>
             </section>

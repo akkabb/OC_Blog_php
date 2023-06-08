@@ -6,7 +6,10 @@ session_start();
 // exit();
 require_once('./src/controllers/add_post.php');
 require_once('./src/controllers/delete_post.php');
+require_once('./src/controllers/update_post.php');
 require_once('./src/controllers/add_comment.php');
+require_once('./src/controllers/submit_comment.php');
+require_once('./src/controllers/delete_comment.php');
 require_once('./src/controllers/homepage.php');
 require_once('./src/controllers/articles.php');
 require_once('./src/controllers/login.php');
@@ -40,7 +43,19 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             } else {
                 addPostGet();
             }
-        }elseif( $_GET['action'] === 'deleteArticle'){
+        }elseif ($_GET['action'] === 'updateArticle') {
+            if (isset($_GET['id']) && $_GET['id'] > 0){
+                $id = $_GET['id'];
+                $input = null;
+                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+                    $input = $_POST;
+                }
+                (new UpdateArticle())->execute($id, $input);
+            }else{
+                throw new Exception('Aucun id envoyé');
+            }
+        }
+        elseif( $_GET['action'] === 'deleteArticle'){
             if (isset($_GET['id']) && $_GET['id'] > 0){
                 $id = $_GET['id'];
                 deletePost($id);
@@ -91,7 +106,22 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
                 } else{
                     throw new Exception('Aucun article');
                 }
-        } else{
+        }elseif ($_GET['action'] === 'submitComment'){
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                (new SubmitComment())->execute($id);
+            } else{
+                throw new Exception('Impossible de valider le commentaire');
+            }
+        }elseif ($_GET['action'] === 'deleteComment') {
+            if (isset($_GET['id']) && $_GET['id'] > 0) {
+                $id = $_GET['id'];
+                deleteComment($id);
+            }else{
+                error();
+            }
+        }
+        else{
             //throw new Exception("ERREUR 404 : la page que vous recherchez n'existe pas.");
             throw error();
         }

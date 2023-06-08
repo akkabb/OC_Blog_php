@@ -45,7 +45,7 @@
                 <section class="display_comments" id="display_comments">
                     <h2>Commentaires</h2>
                     <?php if (!empty($comments)) {?>
-                        <?php //var_dump($comments)?>
+                        <?php var_dump($comments)?>
                         <?php foreach ($comments as $comment) { ?>
                             <div class="comment_news">
                                 <div class="comment_contentWrap">

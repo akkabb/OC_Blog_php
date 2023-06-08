@@ -29,14 +29,14 @@
                 <h2 class="comment_displayAll_title">La liste de tous les commentaires</h2>
                 <?php foreach ($comments as $comment) {?>
                     <article class="comment_displayAll">
-                        <p><?= htmlspecialchars($comment->comment); ?></p>
-                        <p> écrit par <?= htmlspecialchars($comment->created_by); ?></p>
-                        <p> le : <?= htmlspecialchars($comment->creationDate); ?></p>
+                        <h3><?= htmlspecialchars($comment->comment); ?></h3>
+                        <h3> écrit par <?= htmlspecialchars($comment->created_by); ?></h3>
+                        <p class="comment_display_time"> le : <?= htmlspecialchars($comment->creationDate); ?></p>
                             <span class="comment_Admin_validate">
-                                <a href="index.php?action=submitComment&id=<?=$comment->id?>">Valider</a>
+                                <a href="index.php?action=submitComment&id=<?=$comment->id?>" class="admin_btn_validate">Valider</a>
                             </span>
                             <span class="comment_Admin_delete">
-                                <a href="index.php?action=delete&id=<?=$comment->id?>">Supprimer</a>
+                                <a href="index.php?action=deleteComment&id=<?=$comment->id?>" class="admin_btn_delete">Supprimer</a>
                             </span>
                     </article>
                 <?php } ?>

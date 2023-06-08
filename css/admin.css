@@ -13,4 +13,25 @@
 }
 .comment_displayAll{
     color: var(--gray-200);
+    font-weight: bold;
+    margin: 2em 0;
+}
+.comment_displayAll_title{
+    margin-bottom: 2em;
+}
+.comment_display_time{
+    margin-bottom: .8em;
+}
+/*BTN*/
+.admin_btn_delete{
+    margin-left: 1em;
+}
+.admin_btn_validate, .admin_btn_delete{
+    color: var(--deepMagenta);
+    text-decoration: none;
+    transition: all .3s;
+    margin-top: 2em;
+}
+.admin_btn_validate:hover, .admin_btn_delete:hover{
+    border-bottom: 1px solid var(--cyan-100);
 }

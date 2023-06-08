@@ -44,8 +44,15 @@ class PostRepository
     {
         
         //We retrieve the last blog posts
-        $statement = $this->connection->getConnection()->query("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-        created_at, created_by, lead_sentence FROM post  ORDER BY created_at DESC LIMIT 0,5");
+        // $statement = $this->connection->getConnection()->query(
+        //     "SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        //     created_at, created_by, lead_sentence 
+        //     FROM post  ORDER BY created_at ASC ");
+        $statement = $this->connection->getConnection()->query(
+            "SELECT post.id, post.title, post.content, post.created_at, post.created_by, user.username, post.lead_sentence 
+            FROM `post` 
+            INNER JOIN user ON post.created_by = user.id
+            ORDER BY created_at ASC ");
     
         $posts = [];
         while (($row = $statement->fetch()))
@@ -54,7 +61,7 @@ class PostRepository
                 $post->title = $row['title'];
                 $post->content = $row['content'];
                 $post->creationDate = $row['created_at'];
-                $post->creationBy = $row['created_by'];
+                $post->creationBy = $row['username'];
                 $post->leadSentence = $row['lead_sentence'];
                 $post->id = $row['id'];
             
@@ -72,7 +79,6 @@ class PostRepository
         $updateDate = date('Y-m-d H:i:s');
         $statement = $this->connection->getConnection()->prepare(
             "INSERT INTO `post`( `title`, `content`, `created_at`, `created_by`, `slug`, `lead_sentence`, `updated_at`) 
-            -- VALUES (':title',':content',':created_at',':created_by',':slug',':lead_sentence',':updated_at')
             VALUES (?, ?, ?, ?, ?, ?, ?)"
         );
         // $affectedLines = $statement->execute([
@@ -85,14 +91,32 @@ class PostRepository
         //     ':updated_at' => $updateDate,
         // ]);
             $affectedLines = $statement->execute([$title, $content, $creationDate, $creationBy, $slug, $leadSentence, $updateDate]);
+            
+            return ($affectedLines > 0);
+        }
         
+        public function updateArticle($title, $leadSentence, $content,$id)
+        {   
+            $creationDate = date('Y-m-d H:i:s');
+            $creationBy = $_SESSION['id'];
+            $slug = '';
+            $updateDate = date('Y-m-d H:i:s');
+            $statement = $this->connection->getconnection()->prepare("
+            UPDATE `post` 
+            SET `title` = ?, `content` = ?, `created_at` = ?, `created_by` = ?, `slug`= ?, `lead_sentence` = ?, `updated_at` = ?  
+            WHERE id = ?
+            ");
+            $affectedLines = $statement->execute([$title, $content, $creationDate, $creationBy, $slug, $leadSentence, $updateDate, $id]);
+            // $affectedLines = $statement->execute([$title, $leadSentence, $content, $id]);
+
         return ($affectedLines > 0);
     }
 
     public function deleteArticle(int $id)
     {
         $statement = $this->connection->getConnection()->prepare("
-            DELETE FROM `post` WHERE id = ?
+            DELETE FROM `post` 
+            WHERE id = ?
         ");
 
         $affectedLines = $statement->execute([$id]);

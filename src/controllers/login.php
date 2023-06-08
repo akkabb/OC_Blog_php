@@ -3,6 +3,8 @@
 
 require_once 'src/lib/database.php';
 require_once 'src/model/user.php';
+require_once('token.php');
+
 // require_once 'src/controllers/error.php'; // utilisé pour la page error
 
 use App\Model\User\UserRepository;
@@ -26,7 +28,7 @@ function logUser(array $input)
                 throw new Exception("Ce n'est pas un email valide");
             }
         } else {
-            throw new Exception('Les informations sont trop invalides.');
+            throw new Exception('Les informations sont invalides.');
         }
     }
 

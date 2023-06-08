@@ -3,7 +3,7 @@
 namespace App\Model\Comment;
 
 require_once './src/lib/database.php';
-
+use PDO;
 
 //use App\Lib\Database\DatabaseConnection;
 
@@ -15,20 +15,54 @@ class Comment
     public string $comment;
     public int $post;
     public string $title;
+    public string $status;
 }
 
 class CommentRepository
 {
     public \DatabaseConnection $connection;
 
+    function getComment($id)
+    {
+        $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        created_at, created_by, post_id 
+        FROM `comment`  
+        WHERE id = ?"
+        );
+
+        $statement->execute([$id]);
+
+        $row = $statement->fetch();
+        if ($row === false) {
+            return null;
+        }
+
+        $comment = new Comment();
+        $comment->created_by = $row['created_by'];
+        $comment->creationDate = $row['created_at'];
+        $comment->comment = $row['content'];
+        $comment->title = $row['title'];
+        $comment->post = $row['post_id'];
+        $comment->id = $row['id'];
+
+        return $comment;
+    }
+
     function getComments(string $post): array
     {
         
-        $statement = $this->connection->getConnection()->prepare("SELECT title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-        created_at, first_name, post_id 
-        FROM comment 
-        INNER JOIN user ON user.id = comment.id 
-        WHERE post_id = ? 
+        // $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        // created_at, first_name, post_id 
+        // FROM comment 
+        // INNER JOIN user ON user.id = comment.id 
+        // WHERE post_id = ? 
+        // ORDER BY created_at DESC"
+        // );
+        $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
+        created_at, created_by, post_id 
+        FROM `comment` 
+        WHERE post_id = ?  
+        AND `status` = 'APPROVED'
         ORDER BY created_at DESC"
         );
 
@@ -39,8 +73,8 @@ class CommentRepository
         while (($row = $statement->fetch()))
         {
             $comment = new Comment();
-            // $comment->id = $row['id'];
-            $comment->created_by = $row['first_name'];
+            $comment->id = $row['id'];
+            $comment->created_by = $row['created_by'];
             $comment->creationDate = $row['created_at'];
             $comment->comment = $row['content'];
             $comment->title = $row['title'];
@@ -51,20 +85,19 @@ class CommentRepository
 
         return $comments;
     }
-
-    function getAllComments(): array
+    
+    function getAllComments()
     {
-        $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
-        created_at, created_by, post_id FROM comment ORDER BY created_at DESC");
-
-        $statement->execute();
-
         $comments = [];
-
-        while (($row = $statement->fetch()))
-        {
+        $sql = "SELECT comment.content, comment.title , comment.created_at, comment.post_id, comment.created_by, comment.status, comment.id, user.username, post.title AS post_title 
+                FROM comment 
+                INNER JOIN user ON comment.created_by = user.id 
+                INNER JOIN post ON comment.post_id = post.id";
+        $query = $this->connection->getConnection()->prepare($sql);
+        $query->execute();
+        while ($row = $query->fetch()){
             $comment = new Comment();
-            $comment->created_by = $row['created_by'];
+            $comment->created_by = $row['username'];
             $comment->creationDate = $row['created_at'];
             $comment->comment = $row['content'];
             $comment->title = $row['title'];
@@ -73,7 +106,6 @@ class CommentRepository
         
             $comments[] = $comment;
         }
-
         return $comments;
     }
 
@@ -107,12 +139,23 @@ class CommentRepository
         return ($affectedLines > 0);
     }
 
-    function submitComment()
+    function submitComment($id)
     {
         $statement = $this->connection->getConnection()->prepare(
-            "UPDATE comments SET "
+            "UPDATE `comment` SET `status` = 'APPROVED' WHERE id = ?"
         );
 
+        $affectedLines = $statement->execute([$id]);
+        return ($affectedLines > 0);
+    }
+
+    function deleteComment($id)
+    {
+        $statement = $this->connection->getConnection()->prepare("
+        DELETE FROM `comment` WHERE id = ?");
+        $affectedLines = $statement->execute([$id]);
+
+        return ($affectedLines > 0);
     }
 
 }

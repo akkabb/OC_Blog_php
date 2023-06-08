@@ -56,7 +56,7 @@
                         </div>
                         <?php if (isset($errors) && isset($errors['lead_sentence_not_set'])) { ?>
                             <div>
-                                Le lead_sentence_not_set n'est pas facultatif et doit faire plus de 6 characteres
+                                Le résumé n'est pas facultatif et doit faire plus de 6 characteres
                             </div>
                             <br><br><br>
                         <?php } ?>
@@ -70,7 +70,7 @@
                         </div>
                         <?php if (isset($errors) && isset($errors['content_not_set'])) { ?>
                             <div>
-                                Le content n'est pas facultatif et doit faire plus de 20 characteres
+                                Le contenu n'est pas facultatif et doit faire plus de 20 characteres
                             </div>
                             <br><br><br>
                         <?php } ?>

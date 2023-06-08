@@ -78,6 +78,7 @@
                         <input type="password" name="password" id="loginPassword" value="<?= $password ?? '' ?>">
                     </div>
                     <br>
+                    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
                     <div class="login_form-submit">
                         <button type="submit">Se connecter</button>
                     </div>

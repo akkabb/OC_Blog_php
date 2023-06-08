@@ -2,8 +2,9 @@
 //src/controllers/register.php
 require_once 'src/lib/database.php';
 require_once 'src/model/user.php';
+require_once('token.php');
 
-use App\src\model\User\UserRepository;
+use App\Model\User\UserRepository;
 function signin()
 {
     require('templates/register.php');
