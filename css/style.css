@@ -95,6 +95,12 @@ color: var(--danger);
 font-size: 1.2rem;
 font-weight: bold;
 }
+/*MAIL SUCCES*/
+.mail_send{
+  background-color: var(--cyan-100);
+  color: #fff;
+}
+/* END MAIL SUCCES */
 /* MAIN PART*/
 main{
   flex-grow: 1;

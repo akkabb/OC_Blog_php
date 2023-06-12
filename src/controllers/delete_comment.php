@@ -19,6 +19,7 @@ function deleteComment($id)
     if (!$success){
         throw new Exception('Impossible de supprimer le commentaire !');
     } else{
+        $_SESSION['deleteComment'] = '<span style="background-color: var(--cyan-100);color: #fff;padding:15px 22px 15px 22px">Le commentaire est bien supprimé</span>';
         header('Location: index.php?action=post&id=' . $post_id);
     }
 }

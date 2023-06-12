@@ -19,24 +19,17 @@
     <div class="container">
         <?php require_once('templates/header.php')?>
         <main>
+            <span class="">
+                <?php
+                    if (isset($_SESSION['mailsend']))
+                    {
+                        echo $_SESSION['mailsend'];
+                        unset($_SESSION['mailsend']);
+                    }
+                ?>
+            </span>
             <section class="catch_phrase">
                 <h1>Martin Birikorang</h1>
-                <!-- <?php
-                    // if (isset($_SESSION['username']))
-                    // {
-                    //     echo "Bienvenue " . $_SESSION['username'];
-                    // }
-                ?> -->
-                <?php
-                // if (isset($_SESSION['admin']))
-                // {
-                //     var_dump($_SESSION['admin']);
-
-                // }
-                var_dump($_SESSION['username']);
-                var_dump($_SESSION['user_role']);
-                //var_dump($_SESSION['admin']);
-                ?>
             </section>
             <section class="about_me">
             <h2>Bienvenue <?php if (isset($_SESSION['accountCreated'])){echo $_SESSION['accountCreated'];} unset($_SESSION['accountCreated']);?> sur mon blog !</h2>
@@ -66,7 +59,7 @@
             </section>
             <section class="contact_form">
                 <h2>Me contacter</h2>
-                <form action="index.php" method="POST">
+                <form action="index.php?action=contactForm" method="POST">
                     <label for="email">mail</label>
                     <input type="email" name="email" id="email" value="<?= $email ?? '' ?>">
                     <?php if ($errors['email']) : ?>

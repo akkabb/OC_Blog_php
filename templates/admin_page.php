@@ -25,6 +25,26 @@
             <span class="admin_greetings">
                 <h2> Bienvenue  <?php  if (isset($_SESSION['username'])){echo $_SESSION['username'] ;}?></h2>
             </span>
+            <span>
+                <?php
+                if (isset($_SESSION['deleteComment'])) {
+                    echo $_SESSION['deleteComment'];
+                    unset($_SESSION['deleteComment']);
+                }
+                elseif (isset($_SESSION['submitComment'])) {
+                    echo $_SESSION['submitComment'];
+                    unset($_SESSION['submitComment']);
+                }
+                elseif (isset($_SESSION['passAdmin'])) {
+                    echo $_SESSION['passAdmin'];
+                    unset($_SESSION['passAdmin']);
+                }
+                elseif (isset($_SESSION['passUser'])) {
+                    echo $_SESSION['passUser'];
+                    unset($_SESSION['passUser']);
+                }
+                ?>
+            </span>
             <section class="comment_Admin">
                 <h2 class="comment_displayAll_title">La liste de tous les commentaires</h2>
                 <?php foreach ($comments as $comment) {?>

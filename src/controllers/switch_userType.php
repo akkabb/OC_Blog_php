@@ -19,6 +19,7 @@ class SwitchToAdmin{
         if(!$success) {
             throw new Exception('Un problème est survenu');
         } else{
+            $_SESSION['passAdmin'] = '<span style="background-color: var(--cyan-100);color: #fff;padding:15px 22px 15px 22px">Action mené avec succès</span>';
             header('Location: index.php?action=admin');
         }
     }
@@ -36,6 +37,7 @@ class SwitchToUser{
         if(!$success) {
             throw new Exception('Un problème est survenu');
         } else{
+            $_SESSION['passUser'] = '<span style="background-color: var(--cyan-100);color: #fff;padding:15px 22px 15px 22px">Action mené avec succès</span>';
             header('Location: index.php?action=admin');
         }
     }

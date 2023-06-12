@@ -17,6 +17,7 @@ function deletePost($id)
     if (!$success) {
         throw new Exception('Impossible de supprimer l\'article !');
     } else {
+        $_SESSION['deletePost'] = '<span style="background-color: var(--cyan-100);color: #fff;padding:15px 22px 15px 22px">L\'article a bien été supprimé</span>';
         header('Location: index.php?action=list');
     }
 }

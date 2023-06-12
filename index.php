@@ -16,6 +16,7 @@ require_once('./src/controllers/login.php');
 require_once('./src/controllers/logout.php');
 require_once('./src/controllers/register.php');
 require_once('./src/controllers/error.php');
+require_once('./src/controllers/contact.php');
 require_once('./src/controllers/showArticle.php');
 require_once('./src/controllers/admin_page.php');
 require_once('./src/controllers/switch_userType.php');
@@ -117,6 +118,12 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             if (isset($_GET['id']) && $_GET['id'] > 0) {
                 $id = $_GET['id'];
                 deleteComment($id);
+            }else{
+                error();
+            }
+        }elseif ($_GET['action'] === 'contactForm') {
+            if (isset($_POST)) {
+                contactForm($_POST);
             }else{
                 error();
             }

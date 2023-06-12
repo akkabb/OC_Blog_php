@@ -26,22 +26,22 @@
                 <form action="index.php?action=addUser" method="post">
                     <label for="userName">NOM D'UTILISATEUR</label>
                     <br>
-                    <input type="text" name="username" id="">
+                    <input type="text" name="username" id=""required>
                     <br>
                     <label for="email">EMAIL</label>
                     <br>
-                    <input type="email" name="email" id="registerEmail" value="<?= $email ?? '' ?>">
+                    <input type="email" name="email" id="registerEmail" value="<?= $email ?? '' ?>"required>
                     <br>
                     <!-- <?php if ($errors['email']) : ?>
                         <p class="text_danger"><?= $errors['email'] ?></p>
                     <?php endif; ?> -->
                     <label for="firstname">PRENOM</label>
                     <br>
-                    <input type="text" name="firstname" id="">
+                    <input type="text" name="firstname" id=""required>
                     <br>
                     <label for="lastname">NOM</label>
                     <br>
-                    <input type="text" name="lastname" id="">
+                    <input type="text" name="lastname" id=""required>
                     <br>
                     <label for="password">MOT DE PASSE</label>
                     <br>

@@ -29,23 +29,28 @@ use PHPMailer\PHPMailer\SMTP;
           $mail->Port = 465; 
           $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;
           $mail->SMTPAuth = true;
-          $mail->Username = '';
-          $mail->Password = '';
+          $mail->Username = 'efikas99@gmail.com';
+          $mail->Password = 'xgubskymqyoubkxy';
+          /*xgubskymqyoubkxy*/
 
           //Charset
-          $mail->Charset ="utf-8";
+          $mail->CharSet ="utf-8";
 
-          //Destinataire
-          $mail->addAddress("");
+          //Destinataires
+          $mail->addAddress("efikas99@gmail.com");
           
+          //Expéditeur
           $mail->setFrom($email);
 
           // Contenu
+          $mail->Subject = "PHPMailer OC_blog";
           $mail->Body = $contact ;
 
           //On envoie
-          $mail->send();
-
+          $sendEmail = $mail->send();
+          if ($sendEmail){
+               $_SESSION['mailsend'] = '<span style="background-color: var(--cyan-100);color: #fff;padding:15px 22px 15px 22px">Le mail a bien été envoyé</span>';
+          }
           header('Location: index.php?');
 
        }catch(Exception){
