@@ -29,7 +29,7 @@
                     <form action="index.php?action=addPost" method="POST">
                         <legend>Ajouter un article</legend>
 
-                        <!--                    title-->
+                        <!--title-->
                         <div class="comment_form-title">
                             <label for="title">Titre</label>
                             <input
@@ -39,13 +39,12 @@
                             >
                         </div>
                         <?php if (isset($errors) && isset($errors['title_not_set'])) { ?>
-                            <div>
+                            <p class="text_danger">
                                 Le titre n'est pas facultatif et doit faire plus de 6 characteres
-                            </div>
-                            <br><br><br>
+                            </p>
                         <?php } ?>
 
-                        <!--                    lead_sentence-->
+                        <!--lead_sentence-->
                         <div class="comment_form-lead_sentence">
                             <label for="lead_sentence">Le résumé </label>
                             <input
@@ -55,13 +54,12 @@
                             >
                         </div>
                         <?php if (isset($errors) && isset($errors['lead_sentence_not_set'])) { ?>
-                            <div>
+                            <p class="text_danger">
                                 Le résumé n'est pas facultatif et doit faire plus de 6 characteres
-                            </div>
-                            <br><br><br>
+                            </p>
                         <?php } ?>
 
-                        <!--                    content-->
+                        <!--content-->
                         <div class="comment_form-content">
                             <label for="content">Votre message</label>
                             <textarea name="content" cols="30" rows="10">
@@ -69,10 +67,9 @@
                             </textarea>
                         </div>
                         <?php if (isset($errors) && isset($errors['content_not_set'])) { ?>
-                            <div>
+                            <p class="text_danger">
                                 Le contenu n'est pas facultatif et doit faire plus de 20 characteres
-                            </div>
-                            <br><br><br>
+                        </p>
                         <?php } ?>
                         <div class="comment_form-submit">
                             <input type="submit" value="valider">

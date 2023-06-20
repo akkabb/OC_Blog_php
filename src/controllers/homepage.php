@@ -12,6 +12,7 @@ function homepage(){
         'lastname' => '',
         'message' => ''
     ];
+    
 
     if ($_SERVER['REQUEST_METHOD'] === 'POST'){
         $_POST = filter_input_array(INPUT_POST, [
@@ -20,7 +21,7 @@ function homepage(){
         'lastname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
         'message' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
         ]);
-
+        
         $email = $_POST['email'] ?? '';
         $firstname = $_POST['firstname'] ?? '';
         $lastname = $_POST['lastname'] ?? '';
