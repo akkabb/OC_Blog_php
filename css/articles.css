@@ -4,31 +4,36 @@ SHOW-ARTICLE PAGE
 
 ***********/
 
-.comment_contentWrap{
-    background: var(--greenishCyan-100);
-    color: #000;
-    padding: 2em;
-    border-radius: 1em;
-    width: 50%;
-    margin: 1em auto;
+.comment_contentWrap {
+  background: var(--greenishCyan-100);
+  color: #000;
+  padding: 2em;
+  border-radius: 1em;
+  width: 50%;
+  margin: 1em auto;
 }
-.comment_contentWrap p{
-    font-size: 1.2rem;
+
+.comment_contentWrap p {
+  font-size: 1.2rem;
 }
+
 /**********************************************************
  BUTTONS FOR ADMIN USE UPDATE AND DELETE
- 
 *********************************************************/
 
-.article_AdminEdit{
-    font-size: 1.5rem;
-    margin-top: 2em;
+.article_AdminEdit {
+  font-size: 1.5rem;
+  margin-top: 2em;
 }
- .article_modify, .article_delete{
-    color: var(--deepMagenta);
-    text-decoration: none;
-    transition: all .3s;
-  }
-  .article_modify:hover, .article_delete:hover{
-    border-bottom: 1px solid var(--cyan-100);
-  }
+
+.article_modify, 
+.article_delete {
+  color: var(--deepMagenta);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+.article_modify:hover, 
+.article_delete:hover {
+  border-bottom: 1px solid var(--cyan-100);
+}

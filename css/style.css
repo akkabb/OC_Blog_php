@@ -22,7 +22,7 @@
     /* Orange */
   --orange-100: #eb8b3d;
   /* couleurs à définir */
-  --HarlequinGreen: #42c70F; 
+  --HarlequinGreen: #42c70f; 
   --deepMagenta: #C700C7; 
   --blue: #0085C7; 
   --danger: #e74c3c;
@@ -187,7 +187,9 @@ h2 {
   margin: 0 4em;
 }
 
-.github_btn,.cv_btn,.twitter_btn {
+.github_btn,
+.cv_btn,
+.twitter_btn {
   text-decoration: none;
   display: inline-block;
   text-transform: uppercase;
@@ -199,7 +201,9 @@ h2 {
   cursor: pointer;
 }
 
-.github_btn:hover,.cv_btn:hover,.twitter_btn:hover {
+.github_btn:hover,
+.cv_btn:hover,
+.twitter_btn:hover {
   opacity: 0.9;
 }
 
@@ -207,7 +211,9 @@ h2 {
   padding: 20px;
 }
 
-.fa-twitter, .fa-github, .fa-file {
+.fa-twitter, 
+.fa-github, 
+.fa-file {
   font-size: 25px;
 }
 
@@ -221,8 +227,7 @@ h2 {
   padding: 2em;
 }
 
-.contact_form h2
-{
+.contact_form h2 {
   margin-bottom: 1em;
   color: var(--cyan-100);
 }
