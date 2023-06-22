@@ -21,7 +21,13 @@ class Comment
 class CommentRepository
 {
     public \DatabaseConnection $connection;
-
+    
+    /**
+     * It is used to retrieve a comment
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function getComment($id)
     {
         $statement = $this->connection->getConnection()->prepare("SELECT id, title, content, DATE_FORMAT(created_at, '%d/%m/%Y à %Hh%imin%ss') AS
@@ -47,7 +53,13 @@ class CommentRepository
 
         return $comment;
     }
-
+    
+    /**
+     *  Displays comments that have been validated
+     *
+     * @param  mixed $post
+     * @return array
+     */
     function getComments(string $post): array
     {
         
@@ -85,7 +97,12 @@ class CommentRepository
 
         return $comments;
     }
-    
+        
+    /**
+     * Get All Comments
+     *
+     * @return [] of comments
+     */
     function getAllComments()
     {
         $comments = [];
@@ -109,6 +126,15 @@ class CommentRepository
         return $comments;
     }
 
+        
+    /**
+     * It allows you to create a comment
+     *
+     * @param  mixed $post
+     * @param  mixed $created_by
+     * @param  mixed $comment
+     * @return void
+     */
     function createComment($post, $created_by, $comment)
     {
         $title = '';
@@ -120,25 +146,19 @@ class CommentRepository
             "INSERT INTO `comment` (`content`, `title`, `created_at`, `created_by`, `post_id`, `status`) 
             VALUES (?, ?, ?, ?, ?, ?)"
         );
-        var_dump($title);
-        echo '<br>';
-        var_dump($comment);
-        echo '<br>';
-        var_dump($creationDate);
-        echo '<br>';
-        var_dump($created_by);
-        echo '<br>';
-        var_dump($post);
-        echo '<br>';
-        var_dump($status);
-        echo '<br>';
         $affectedLines = $statement->execute([
         $comment, $title, $creationDate, $created_by, $post, $status
         ]);
 
         return ($affectedLines > 0);
     }
-
+    
+    /**
+     * It is used to validate a comment
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function submitComment($id)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -148,7 +168,13 @@ class CommentRepository
         $affectedLines = $statement->execute([$id]);
         return ($affectedLines > 0);
     }
-
+    
+    /**
+     * It allows you to delete a comment
+     *
+     * @param  mixed $id
+     * @return void
+     */
     function deleteComment($id)
     {
         $statement = $this->connection->getConnection()->prepare("
@@ -160,17 +186,3 @@ class CommentRepository
 
 }
 
-/*
-function commentDbConnect()
-{
-    $dns = 'mysql:host=localhost; dbname=blog';
-    $user = 'root';
-    $password = 'root';
-
-    $pdo = new PDO($dns, $user, $password, [
-        PDO::ATTR_ERRMODE => PDO ::ERRMODE_EXCEPTION,
-        PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
-    ]);
-    return $pdo;
-}
-*/

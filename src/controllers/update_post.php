@@ -1,13 +1,20 @@
 <?php
 
-require_once('./src/lib/database.php');
-require_once('./src/model/post.php');
+require_once './src/lib/database.php';
+require_once './src/model/post.php';
 
 use App\Model\Post\PostRepository;
 
 
 class UpdateArticle
-{
+{    
+    /**
+     * We update an article
+     *
+     * @param  mixed $id
+     * @param  mixed $input
+     * @return void
+     */
     public function execute($id, $input)
     {
          // It handles the form submission when there is an input.
@@ -25,7 +32,7 @@ class UpdateArticle
                  $errors['content_not_set'] = true;
              }
              if (!empty($errors)) {
-                 require ("templates/edit_post.php");
+                 require "templates/edit_post.php";
                  exit();
              }
             $title = null;
@@ -65,7 +72,7 @@ class UpdateArticle
         if ($post === null) {
             throw new \Exception("Le commentaire $id n'existe pas.");
         }
-        require('templates/edit_post.php');
+        require 'templates/edit_post.php';
         
     }
  }

@@ -1,25 +1,23 @@
 <?php
-// echo phpinfo();
-// exit();
 session_start();
-// var_dump($_SESSION);
-// exit();
-require_once('./src/controllers/add_post.php');
-require_once('./src/controllers/delete_post.php');
-require_once('./src/controllers/update_post.php');
-require_once('./src/controllers/add_comment.php');
-require_once('./src/controllers/submit_comment.php');
-require_once('./src/controllers/delete_comment.php');
-require_once('./src/controllers/homepage.php');
-require_once('./src/controllers/articles.php');
-require_once('./src/controllers/login.php');
-require_once('./src/controllers/logout.php');
-require_once('./src/controllers/register.php');
-require_once('./src/controllers/error.php');
-require_once('./src/controllers/contact.php');
-require_once('./src/controllers/showArticle.php');
-require_once('./src/controllers/admin_page.php');
-require_once('./src/controllers/switch_userType.php');
+
+
+require_once './src/controllers/add_post.php';
+require_once './src/controllers/delete_post.php';
+require_once './src/controllers/update_post.php';
+require_once './src/controllers/add_comment.php';
+require_once './src/controllers/submit_comment.php';
+require_once './src/controllers/delete_comment.php';
+require_once './src/controllers/homepage.php';
+require_once './src/controllers/articles.php';
+require_once './src/controllers/login.php';
+require_once './src/controllers/logout.php';
+require_once './src/controllers/register.php';
+require_once './src/controllers/error.php';
+require_once './src/controllers/contact.php';
+require_once './src/controllers/showArticle.php';
+require_once './src/controllers/admin_page.php';
+require_once './src/controllers/switch_userType.php';
 
 
 if (isset($_GET['action']) && $_GET['action'] !== '')
@@ -32,7 +30,9 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
                 throw new Exception(('Aucun article'));
             }
     
-        } elseif ($_GET['action'] === 'admin'){
+        } 
+        // THIS PART CONCERNS ADMIN ACTIONS
+        elseif ($_GET['action'] === 'admin'){
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1){
                 admin();
             }else{
@@ -81,7 +81,9 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
         }
         elseif($_GET['action'] === 'list'){
                 displayArticles();
-        }elseif ($_GET['action'] === 'login'){
+        }
+        // THIS PART CONCERNS USERS ACTIONS
+        elseif ($_GET['action'] === 'login'){
                 login();
         }elseif ($_GET['action'] === 'logout'){
                 logout();
@@ -99,7 +101,9 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             }else{
                 error();
             }
-        }elseif ($_GET['action'] === 'addComment'){
+        }
+        // THIS PART CONCERNS COMMENTS ACTIONS
+        elseif ($_GET['action'] === 'addComment'){
                 if (isset($_GET['id']) && $_GET['id'] > 0) {
                     $id = $_GET['id'];
                     $created_by = $_SESSION['id'];
@@ -121,7 +125,9 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
             }else{
                 error();
             }
-        }elseif ($_GET['action'] === 'contactForm') {
+        }
+        // THIS PART CONCERNS CONTACT
+        elseif ($_GET['action'] === 'contactForm') {
             if (isset($_POST)) {
                 contactForm($_POST);
             }else{

@@ -2,5 +2,5 @@
 
 function error()
 {
-    require_once('templates/error.php');
+    require_once 'templates/error.php';
 }

@@ -1,8 +1,8 @@
 <?php
 
-require_once('templates/phpmailer/Exception.php');
-require_once('templates/phpmailer/PHPMailer.php');
-require_once('templates/phpmailer/SMTP.php');
+require_once 'templates/phpmailer/Exception.php';
+require_once 'templates/phpmailer/PHPMailer.php';
+require_once 'templates/phpmailer/SMTP.php';
 
 use PHPMailer\PHPMailer\Exception;
 use PHPMailer\PHPMailer\PHPMailer;
@@ -48,7 +48,7 @@ use PHPMailer\PHPMailer\SMTP;
            }
        }
    }
-   require ("templates/homepage.php");
+   require "templates/homepage.php";
 
       
 
@@ -64,9 +64,9 @@ use PHPMailer\PHPMailer\SMTP;
 
        try {
           // Configuration
-          $mail->SMTPDebug = SMTP::DEBUG_SERVER; // Je veux des infos de débug
+          $mail->SMTPDebug = SMTP::DEBUG_SERVER; // I want debug info
 
-          // On configue le SMTP
+          // We configure the SMTP
           $mail->isSMTP();
           $mail->Host = 'smtp.gmail.com';
           $mail->Port = 465; 
@@ -79,17 +79,17 @@ use PHPMailer\PHPMailer\SMTP;
           //Charset
           $mail->CharSet ="utf-8";
 
-          //Destinataires
+          //Recipients
           $mail->addAddress("efikas99@gmail.com");
           
-          //Expéditeur
+          //Sender
           $mail->setFrom($email);
 
-          // Contenu
+          // content
           $mail->Subject = "PHPMailer OC_blog";
           $mail->Body = $contact ;
 
-          //On envoie
+          //We send
           $sendEmail = $mail->send();
           if ($sendEmail){
                $_SESSION['mailsend'] = '<span style="background-color: var(--cyan-100);color: #fff;padding:15px 22px 15px 22px">Le mail a bien été envoyé</span>';

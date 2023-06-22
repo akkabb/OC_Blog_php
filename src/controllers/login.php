@@ -3,7 +3,7 @@
 
 require_once 'src/lib/database.php';
 require_once 'src/model/user.php';
-require_once('token.php');
+require_once 'token.php';
 
 // require_once 'src/controllers/error.php'; // utilisé pour la page error
 
@@ -11,7 +11,7 @@ use App\Model\User\UserRepository;
 
 function login()
 {
-    require('templates/login.php');
+    require 'templates/login.php';
 }
 
 function logUser(array $input)
@@ -19,8 +19,8 @@ function logUser(array $input)
     $email = null;
     $password = null;
     if (!empty($input)) {
-        // Le formulaire à été envoyé
-        // On vérifie que TOUS les champs requis soient remplis
+        // form has been sent
+        // We check that ALL the required fields are filled in
         if (isset($input["email"], $input["password"]) && !empty($input['email']) && !empty($input['password'])) {
             $email = $input["email"];
             $password = $input["password"];
@@ -35,10 +35,10 @@ function logUser(array $input)
     $userRepository = new UserRepository();
     $userRepository->connection = new DatabaseConnection();
     $success = $userRepository->loginUser($email, $password);
-    var_dump($success);
     if (!$success) {
-        //throw new Exception('Impossible se connecter à votre compte !');
-        //error();
+        // throw new Exception('Les informations de connexion sont érronées');
+        $_SESSION['login_failed'] = '<span style="background-color: var(--danger);color: #fff;padding:15px 22px 15px 22px">Vérifier vos éléments de connexion</span>';
+        header('Location: index.php?action=login');
     } else {
         header('Location: index.php');
     }

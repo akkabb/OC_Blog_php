@@ -1,25 +1,32 @@
 <?php
-
 //src/controllers/homepage.php
-require_once('token.php');
+require_once 'token.php';
 
-function homepage(){
+
+/**
+ * Error handling for the form
+ *
+ * @return void
+ */
+function homepage()
+{
      $error_required = 'Veuillez renseigner ce champ';
      $error_email = 'Veuillez entrer une adresse mail valide';
-    $errors = [
-        'email' => '',
-        'firstname' => '',
-        'lastname' => '',
-        'message' => ''
-    ];
+     $errors = [
+            'email' => '',
+            'firstname' => '',
+            'lastname' => '',
+            'message' => ''
+        ];
     
-
-    if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+    // Filtering and Sanitizing
+    
+    if (isset($_POST['submit'])) {
         $_POST = filter_input_array(INPUT_POST, [
             'email' => FILTER_SANITIZE_EMAIL,
-        'firstname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'lastname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
-        'message' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
+            'firstname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'lastname' => FILTER_SANITIZE_FULL_SPECIAL_CHARS,
+            'message' => FILTER_SANITIZE_FULL_SPECIAL_CHARS
         ]);
         
         $email = $_POST['email'] ?? '';
@@ -27,14 +34,18 @@ function homepage(){
         $lastname = $_POST['lastname'] ?? '';
         $message = $_POST['message'] ?? '';
 
-        if (!$email)
+        if (!$email) { 
             $errors['email'] = $error_email;
-        if (!$firstname)
+        }
+        if (!$firstname) {
             $errors['firstname'] = $error_required;
-        if (!$lastname)
+        }
+        if (!$lastname) {
             $errors['lastname'] = $error_required;
-        if (!$message)
+        }
+        if (!$message) {
             $errors['message'] = $error_required;
+        }
 
         if (!empty($email) && !empty($firstname) && !empty($lastname) && !empty($message)) {
             if (Token::check($_POST['token'])) {
@@ -42,5 +53,5 @@ function homepage(){
             }
         }
     }
-    require ("templates/homepage.php");
+    require "templates/homepage.php";
 }

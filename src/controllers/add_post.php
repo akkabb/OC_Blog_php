@@ -1,14 +1,14 @@
 <?php
 //src/controllers/add_post.php
 
-require_once('./src/model/post.php');
-require_once('./src/lib/database.php');
+require_once './src/model/post.php';
+require_once './src/lib/database.php';
 
 use APP\Model\Post\PostRepository;
 
 function addPostGet()
 {
-    require ('templates/add_post.php');
+    require 'templates/add_post.php';
 }
 
 function addPostPost($input)
@@ -33,7 +33,7 @@ function addPostPost($input)
 
     if (!empty($errors)) {
         var_dump($errors);
-        require ("templates/add_post.php");
+        require "templates/add_post.php";
         exit();
     }
 

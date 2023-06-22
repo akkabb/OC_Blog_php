@@ -1,23 +1,14 @@
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- <link href="/dist/css/fontawesome/css/font-awesome.min.css" rel="stylesheet"> -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="icon" type="image/png" href="img/favicon-32x32.png" />
-    <link rel="stylesheet" href="css/style.css">
-    <!-- <title>Blog PHP Openclassrooms</title> -->
-    <?php $title = "Blog PHP Openclassrooms"; ?>
+<?php 
+    $title = "Blog PHP Openclassrooms"; 
+    require_once 'head.php';
+?>    
 </head>
 <body>
     <div class="container">
-        <?php require_once('templates/header.php')?>
+        <?php require_once 'templates/header.php'?>
         <main>
             <span class="">
                 <?php
@@ -90,7 +81,7 @@
             </section>
             <!-- A consever pour utiliser pour les posts <img src="https://picsum.photos/200/300" alt="test image "> -->
         </main>
-        <?php require_once('templates/footer.php') ?>
+        <?php require_once 'templates/footer.php' ?>
         
     </div>
 </body>

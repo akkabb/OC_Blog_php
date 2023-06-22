@@ -18,7 +18,13 @@ class Post
 class PostRepository
 {
     public \DatabaseConnection $connection;
-
+    
+    /**
+     * We retrieve the information of an article
+     *
+     * @param  mixed $id
+     * @return Post
+     */
     public function getPost(/*PostRepository $this, */ string $id): Post
     {
     
@@ -39,7 +45,12 @@ class PostRepository
     
         return $post;
     }
-
+    
+    /**
+     * It allows you to retrieve the information of all the articles
+     *
+     * @return array
+     */
     public function getPosts(): array
     {
         
@@ -70,7 +81,15 @@ class PostRepository
         }
         return $posts;
     }
-
+    
+    /**
+     * It allows you to create an article
+     *
+     * @param  mixed $title
+     * @param  mixed $leadSentence
+     * @param  mixed $content
+     * @return void
+     */
     public function createArticle($title, $leadSentence, $content)
     {
         $creationDate = date('Y-m-d H:i:s');
@@ -94,7 +113,16 @@ class PostRepository
             
             return ($affectedLines > 0);
         }
-        
+                
+        /**
+         * It allows you to update the information of an article
+         *
+         * @param  mixed $title
+         * @param  mixed $leadSentence
+         * @param  mixed $content
+         * @param  mixed $id
+         * @return void
+         */
         public function updateArticle($title, $leadSentence, $content,$id)
         {   
             $creationDate = date('Y-m-d H:i:s');
@@ -111,7 +139,13 @@ class PostRepository
 
         return ($affectedLines > 0);
     }
-
+    
+    /**
+     * It allows you to delete an article
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function deleteArticle(int $id)
     {
         $statement = $this->connection->getConnection()->prepare("

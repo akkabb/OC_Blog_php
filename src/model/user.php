@@ -20,7 +20,8 @@ class UserRepository{
     public const USER_TYPE_ADMIN = 1;
 
     public const USER_TYPE_USER = 2;
-
+    
+    
     public function getUser(string $id)
     {
         $statement =  $this->connection->getConnection()->prepare(
@@ -44,7 +45,8 @@ class UserRepository{
 
         return $user;
     }
-
+    
+  
     public function getUsers(): array
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -69,7 +71,8 @@ class UserRepository{
         }
         return $users;
     }
-
+    
+   
     public function createUser($username, $email, $firstname, $lastname, $password)
     {
         
@@ -89,7 +92,8 @@ class UserRepository{
 
         return ($affectedLines > 0);
     }
-
+    
+    
     public function passAdmin($id)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -99,7 +103,13 @@ class UserRepository{
         return ($affectedLines > 0);
 
     }
-
+    
+    /**
+     * Switch a user to user status
+     *
+     * @param  mixed $id
+     * @return void
+     */
     public function passUser($id)
     {
         $statement = $this->connection->getConnection()->prepare(
@@ -108,7 +118,13 @@ class UserRepository{
         $affectedLines = $statement->execute([$id]);
         return ($affectedLines > 0);
     }
-
+    
+    /**
+     * loginUser
+     *
+     * @param  mixed $email
+     * @return void
+     */
     public function loginUser(string $email)
 	{
 		$statement = $this->connection->getConnection()->prepare(

@@ -1,37 +1,44 @@
 
-.main_Admin{
-    background: var(--gray-100);
-    color: var(--gray-200);
+.main_Admin {
+  background: var(--gray-100);
+  color: var(--gray-200);
 }
-.admin_greetings h2{
-    margin: 1em 0;
-}
-.comment_Admin, .user_Admin{
-    margin: 1em 0;
-    padding: 2em;
 
+.admin_greetings h2 {
+  margin: 1em 0;
 }
-.comment_displayAll{
-    color: var(--gray-200);
-    font-weight: bold;
-    margin: 2em 0;
+
+.comment_Admin, .user_Admin {
+  margin: 1em 0;
+  padding: 2em;
 }
-.comment_displayAll_title{
-    margin-bottom: 2em;
+
+.comment_displayAll {
+  color: var(--gray-200);
+  font-weight: bold;
+  margin: 2em 0;
 }
-.comment_display_time{
-    margin-bottom: .8em;
+
+.comment_displayAll_title {
+  margin-bottom: 2em;
 }
-/*BTN*/
-.admin_btn_delete{
-    margin-left: 1em;
+
+.comment_display_time {
+  margin-bottom: .8em;
 }
-.admin_btn_validate, .admin_btn_delete{
-    color: var(--deepMagenta);
-    text-decoration: none;
-    transition: all .3s;
-    margin-top: 2em;
+
+/* BTN */ 
+.admin_btn_delete {
+  margin-left: 1em;
 }
-.admin_btn_validate:hover, .admin_btn_delete:hover{
-    border-bottom: 1px solid var(--cyan-100);
+
+.admin_btn_validate, .admin_btn_delete {
+  color: var(--deepMagenta);
+  text-decoration: none;
+  transition: all .3s;
+  margin-top: 2em;
+}
+
+.admin_btn_validate:hover, .admin_btn_delete:hover {
+ border-bottom: 1px solid var(--cyan-100);
 }

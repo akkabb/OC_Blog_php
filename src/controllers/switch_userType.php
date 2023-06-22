@@ -1,7 +1,7 @@
 <?php
-require_once('./src/lib/database.php');
-require_once('./src/model/post.php');
-require_once('./src/model/user.php');
+require_once './src/lib/database.php';
+require_once './src/model/post.php';
+require_once './src/model/user.php';
 
 use App\Model\User\UserRepository;
 

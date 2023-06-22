@@ -1,8 +1,8 @@
 <?php
 //src/controllers/delete_comment.php
 
-require_once('./src/model/comment.php');
-require_once('./src/lib/database.php');
+require_once './src/model/comment.php';
+require_once './src/lib/database.php';
 
 use App\Model\Comment\CommentRepository;
 
