@@ -167,7 +167,7 @@ h2 {
 .about_links {
   display: flex;
   justify-content: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   align-items: center;
   margin-top: 1em;
   background-color: var(--orange-100);
@@ -211,8 +211,8 @@ h2 {
   padding: 20px;
 }
 
-.fa-twitter, 
-.fa-github, 
+.fa-twitter,
+.fa-github,
 .fa-file {
   font-size: 25px;
 }
@@ -266,7 +266,7 @@ button {
   border-radius: 25px;
 }
 
-/*FOOTER PART*/
+/* FOOTER PART */
 
 footer {
   background-color: var(--gray-400);
@@ -363,3 +363,75 @@ FOOTER
 .footer_link:hover {
   border-bottom: 1px solid var(--cyan-100);
 }
+
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 768px) {
+  body {
+    background-color: red;
+    font-size: 0.5rem;
+  }
+
+  .menu_list li a,
+  .about_sentences p,
+  .catch_phrase h1 {
+    font-size: 0.8rem;
+  }
+
+  .about_links {
+    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .about_cv {
+    margin: 1em 0;
+  }
+
+  .catch_phrase h1 {
+    width: 50%;
+  }
+
+  form {
+    width: 100%;
+  }
+
+  form label,
+  button {
+    font-size: 0.5rem;
+  }
+
+  /* LOGIN PAGE < 768 px */
+
+  /* POST PAGE < 768 px */
+
+  .article_news img {
+    width: 300px;
+  }
+  
+  .article_news h3,
+  .article_news p,
+  .article_news_link{
+    font-size: 0.8rem;
+  }
+  
+  .article_news h3 {
+    margin: 1em 0;
+  }
+  
+  /* COMMENT PAGE < 768px */
+  
+  article img {
+    width: 300px;
+    margin: 1em 0;
+  }
+
+  article p,
+  .comment_content,
+  .comment_news p,
+  .comment_allowComment{
+    font-size: 0.8rem;
+  }
+}
+

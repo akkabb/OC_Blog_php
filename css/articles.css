@@ -26,14 +26,14 @@ SHOW-ARTICLE PAGE
   margin-top: 2em;
 }
 
-.article_modify, 
+.article_modify,
 .article_delete {
   color: var(--deepMagenta);
   text-decoration: none;
   transition: all 0.3s;
 }
 
-.article_modify:hover, 
+.article_modify:hover,
 .article_delete:hover {
   border-bottom: 1px solid var(--cyan-100);
 }

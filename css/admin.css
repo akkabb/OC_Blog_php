@@ -8,7 +8,7 @@
   margin: 1em 0;
 }
 
-.comment_Admin, 
+.comment_Admin,
 .user_Admin {
   margin: 1em 0;
   padding: 2em;
@@ -34,7 +34,7 @@
   margin-left: 1em;
 }
 
-.admin_btn_validate, 
+.admin_btn_validate,
 .admin_btn_delete {
   color: var(--deepMagenta);
   text-decoration: none;
@@ -42,7 +42,7 @@
   margin-top: 2em;
 }
 
-.admin_btn_validate:hover, 
+.admin_btn_validate:hover,
 .admin_btn_delete:hover {
   border-bottom: 1px solid var(--cyan-100);
 }
