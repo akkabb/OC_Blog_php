@@ -14,7 +14,7 @@
                 <?php
                     if (isset($_SESSION['mailsend']))
                     {
-                        echo $_SESSION['mailsend'];
+                        echo htmlentities($_SESSION['mailsend']);
                         unset($_SESSION['mailsend']);
                     }
                 ?>
@@ -23,7 +23,7 @@
                 <h1>Martin Birikorang</h1>
             </section>
             <section class="about_me">
-            <h2>Bienvenue <?php if (isset($_SESSION['accountCreated'])){echo $_SESSION['accountCreated'];} unset($_SESSION['accountCreated']);?> sur mon blog !</h2>
+            <h2>Bienvenue <?php if (isset($_SESSION['accountCreated'])){echo htmlentities($_SESSION['accountCreated']);} unset($_SESSION['accountCreated']);?> sur mon blog !</h2>
                 <div class="about_sentences">
                     <p class="about_paragraph">
                         <span class="bracket">{</span>
@@ -52,27 +52,27 @@
                 <h2>Me contacter</h2>
                 <form action="index.php?action=contactForm" method="POST">
                     <label for="email">mail</label>
-                    <input type="email" name="email" id="email" value="<?= $email ?? '' ?>">
+                    <input type="email" name="email" id="email" value="<?= htmlentities($email) ?? '' ?>">
                     <?php if ($errors['email']) : ?>
-                        <p class="text_danger"><?= $errors['email'] ?></p>
+                        <p class="text_danger"><?= htmlspecialchars($errors['email']); ?></p>
                     <?php endif; ?>
                     <br>
                         <label for="firstname">prenom</label>
-                        <input type="text" name="firstname" id="firstname" value="<?= $firstname ?? '' ?>">
+                        <input type="text" name="firstname" id="firstname" value="<?= htmlentities($firstname) ?? '' ?>">
                         <?php if ($errors['firstname']) : ?>
-                            <p class="text_danger"><?= $errors['firstname'] ?></p>
+                            <p class="text_danger"><?= htmlspecialchars($errors['firstname']); ?></p>
                         <?php endif; ?> 
                     <br>
                         <label for="lastname">nom</label>
-                        <input type="text" name="lastname" id="lastname" value="<?= $lastname ?? '' ?>">
+                        <input type="text" name="lastname" id="lastname" value="<?= htmlentities($lastname) ?? '' ?>">
                         <?php if ($errors['lastname']) : ?>
-                            <p class="text_danger"><?= $errors['lastname'] ?></p>
+                            <p class="text_danger"><?= htmlspecialchars($errors['lastname']); ?></p>
                         <?php endif; ?>
                     <br>
                     <label for="message">message</label>
                     <textarea name="message" id="" cols="30" rows="10"></textarea>
                     <?php if ($errors['message']) : ?>
-                        <p class="text_danger"><?= $errors['message'] ?></p>
+                        <p class="text_danger"><?= htmlspecialchars($errors['message']); ?></p>
                     <?php endif; ?>
                     <br>
                     <input type="hidden" name="token" value="<?php echo Token::generate();?>">

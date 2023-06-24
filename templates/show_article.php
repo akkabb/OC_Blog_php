@@ -12,14 +12,14 @@
         <?php require_once 'templates/header.php'?>
         <main>
                 <article>
-                    <h1><?= htmlspecialchars($post->title); ?></h1>
+                    <h1><?= htmlentities($post->title); ?></h1>
                     <h3>
-                        Publiée le <?=$post->creationDate; ?> par <?= htmlspecialchars($post->creationBy); ?>
+                        Publiée le <?=htmlspecialchars($post->creationDate); ?> par <?= htmlspecialchars($post->creationBy); ?>
                     </h3>
                     <img src="https://picsum.photos/400/200" alt="image_random" class="article_randomPictures">
-                    <h2><?= $post->leadSentence;?></h2>
+                    <h2><?= htmlentities($post->leadSentence);?></h2>
                     <p>
-                        <?= $post->content;?>
+                        <?= htmlentities($post->content);?>
                     </p>
                     <?php 
                         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1) {?>
@@ -39,10 +39,10 @@
                         <?php foreach ($comments as $comment) { ?>
                             <div class="comment_news">
                                 <div class="comment_contentWrap">
-                                    <p><?= htmlspecialchars($comment->comment); ?></p>
+                                    <p><?= htmlentities($comment->comment); ?></p>
                                 </div>
-                                <p> écrit par <?= htmlspecialchars($comment->created_by); ?></p>
-                                <p> le : <?= htmlspecialchars($comment->creationDate); ?></p>
+                                <p> écrit par <?= htmlentities($comment->created_by); ?></p>
+                                <p> le : <?= htmlentities($comment->creationDate); ?></p>
                                 <p><?php /* $comment->id*/ ?></p>
                             </div>
                         <?php }?> 
@@ -55,11 +55,11 @@
                 <section class="comment_form">
                     <?php if (isset($_SESSION['username'])){?>
                     <div class="comment_form">
-                        <form action="index.php?action=addComment&id=<?= $post->id ?>" method="POST">
+                        <form action="index.php?action=addComment&id=<?= urlencode($post->id);?>" method="POST">
                             <legend>Laisser un commentaire sur cet article</legend>
                             <div class="comment_form-author">
                                 <label for="author">Auteur</label>
-                                <input type="text" name="author" id="" value=<?= $_SESSION['username'];?>>
+                                <input type="text" name="author" id="" value=<?= htmlentities($_SESSION['username']);?>>
                             </div>
                             <div class="comment_form-content">
                                 <label for="comment">Votre message</label>

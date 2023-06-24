@@ -21,9 +21,9 @@
                         <?= htmlspecialchars($post->title); ?>
                         <br>
                         <em>écrit le <?=$post->creationDate; ?></em>
-                        <em>par :  <?= htmlspecialchars($post->creationBy); ?></em>
+                        <em>par :  <?= htmlentities($post->creationBy); ?></em>
                     </h3>
-                    <p><?= $post->leadSentence;?></p>
+                    <p><?= htmlentities($post->leadSentence);?></p>
                     <!-- <p>
                         <?=
                             //we display the content

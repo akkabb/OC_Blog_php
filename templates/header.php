@@ -5,7 +5,7 @@
             <li><a href="index.php">Accueil</a></li>
             <li><a href="index.php?action=list">Articles</a></li>
             <?php if (isset($_SESSION['username'])) {?>
-            <li><a href="index.php?action=logout">Se deconnecter de <?= $_SESSION['username']?></a></li>
+            <li><a href="index.php?action=logout">Se deconnecter de <?= htmlentities($_SESSION['username']);?></a></li>
             <?php } else {?>
             <li><a href="index.php?action=login">Se connecter</a></li>
             <?php } ?>
