@@ -10,7 +10,7 @@
 <body>
     <div class="container">
         <?php require_once 'templates/header.php'?>
-        <main>
+        <main class="main_addPost">
 
             <?php if (isset($errors) && !empty($errors)) { ?>
                 <div>
@@ -20,7 +20,7 @@
             <section class="add_post_form">
                 <div class="comment_form">
 
-                    <form action="index.php?action=addPost" method="POST">
+                    <form action="index.php?action=addPost" method="POST" class="addPostFORM">
                         <legend>Ajouter un article</legend>
 
                         <!--title-->

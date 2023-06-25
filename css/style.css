@@ -276,7 +276,7 @@ footer {
   padding: 2em;
 }
 
-/************************************************************************************************
+/**************************************************************************************
 LOGGIN PAGE
 **************************************************************************************/
 .main_login {
@@ -286,6 +286,10 @@ LOGGIN PAGE
   text-align: center;
 }
 
+.form_login h2 {
+  margin: 1em 0;
+}
+
 .form_login {
   display: flex;
   flex-direction: column;
@@ -293,10 +297,47 @@ LOGGIN PAGE
   align-items: center;
   flex-grow: 1;
 }
+.form_login form {
+  width: 40%;
+}
+
+.form_login p {
+  margin: 1em 0;
+}
+
+.login_form-email,
+.login_form-password {
+  display: flex;
+  flex-direction: column;
+}
 
 .login_link-register {
   color: var(--gray-100);
 }
+
+/**************************************************************************************
+REGISTER PAGE
+**************************************************************************************/
+.form_register {
+  padding: 16px;
+}
+
+.form_register h2 {
+  margin: 1em 0;
+}
+
+.form_register form {
+  width: 40%;
+  padding: 1em;
+  margin-bottom: 1em;
+}
+
+.form_register label {
+  font-size: 1rem;
+}
+
+
+
 
 /*******
 POST PART
@@ -403,7 +444,10 @@ FOOTER
   }
 
   /* LOGIN PAGE < 768 px */
-
+  
+  .form_register form {
+    width: 100%;
+  }
   /* POST PAGE < 768 px */
 
   .article_news img {

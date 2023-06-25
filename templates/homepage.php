@@ -52,19 +52,19 @@
                 <h2>Me contacter</h2>
                 <form action="index.php?action=contactForm" method="POST">
                     <label for="email">mail</label>
-                    <input type="email" name="email" id="email" value="<?= htmlentities($email) ?? '' ?>">
+                    <input type="email" name="email" id="email" value="<?= $email ?? '' ?>">
                     <?php if ($errors['email']) : ?>
-                        <p class="text_danger"><?= htmlspecialchars($errors['email']); ?></p>
+                        <p class="text_danger"><?= htmlentities($errors['email']); ?></p>
                     <?php endif; ?>
                     <br>
                         <label for="firstname">prenom</label>
-                        <input type="text" name="firstname" id="firstname" value="<?= htmlentities($firstname) ?? '' ?>">
+                        <input type="text" name="firstname" id="firstname" value="<?= $firstname ?? '' ?>">
                         <?php if ($errors['firstname']) : ?>
-                            <p class="text_danger"><?= htmlspecialchars($errors['firstname']); ?></p>
+                            <p class="text_danger"><?= htmlentities($errors['firstname']); ?></p>
                         <?php endif; ?> 
                     <br>
                         <label for="lastname">nom</label>
-                        <input type="text" name="lastname" id="lastname" value="<?= htmlentities($lastname) ?? '' ?>">
+                        <input type="text" name="lastname" id="lastname" value="<?= $lastname ?? '' ?>">
                         <?php if ($errors['lastname']) : ?>
                             <p class="text_danger"><?= htmlspecialchars($errors['lastname']); ?></p>
                         <?php endif; ?>
@@ -75,7 +75,7 @@
                         <p class="text_danger"><?= htmlspecialchars($errors['message']); ?></p>
                     <?php endif; ?>
                     <br>
-                    <input type="hidden" name="token" value="<?php echo Token::generate();?>">
+                    <input type="hidden" name="token" value="<?= Token::generate();?>">
                     <button type="submit">Envoyer</button>
                 </form>
             </section>

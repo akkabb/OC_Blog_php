@@ -20,7 +20,7 @@
                     <br>
                     <label for="email">EMAIL</label>
                     <br>
-                    <input type="email" name="email" id="registerEmail" value="<?= htmlentities($email) ?? '' ?>"required>
+                    <input type="email" name="email" id="registerEmail" value="<?= $email ?? '' ?>"required>
                     <br>
                     <!-- <?php if ($errors['email']) : ?>
                         <p class="text_danger"><?= $errors['email'] ?></p>
@@ -35,7 +35,7 @@
                     <br>
                     <label for="password">MOT DE PASSE</label>
                     <br>
-                    <input type="password" name="password" id="loginPassword" value="<?= htmlentities($password) ?? '' ?>">
+                    <input type="password" name="password" id="loginPassword" value="<?= $password ?? '' ?>">
                     <br>
                     <br>
                     <input type="hidden" name="token" value="<?= Token::generate();?>">

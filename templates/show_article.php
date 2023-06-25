@@ -24,9 +24,9 @@
                     <?php 
                         if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1) {?>
                             <div class="article_AdminEdit">
-                                <strong><a href="index.php?action=updateArticle&id=<?=$post->id?>" class="article_modify">Modifier</a></strong>
+                                <strong><a href="index.php?action=updateArticle&id=<?= urlencode($post->id);?>" class="article_modify">Modifier</a></strong>
                                 
-                                <strong><a href="index.php?action=deleteArticle&id=<?=$post->id?>" class="article_delete">Supprimer</a></strong>
+                                <strong><a href="index.php?action=deleteArticle&id=<?= urlencode($post->id);?>" class="article_delete">Supprimer</a></strong>
                             </div></br> 
                         <?php 
                         }
@@ -35,7 +35,7 @@
                 <section class="display_comments" id="display_comments">
                     <h2>Commentaires</h2>
                     <?php if (!empty($comments)) {?>
-                        <?php var_dump($comments)?>
+                        <!-- <?php //var_dump($comments)?> -->
                         <?php foreach ($comments as $comment) { ?>
                             <div class="comment_news">
                                 <div class="comment_contentWrap">

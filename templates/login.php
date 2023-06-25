@@ -22,7 +22,7 @@
                 <form action="index.php?action=logUser" method="post">
                     <div class="login_form-email">
                         <label for="email">EMAIL</label>
-                        <input type="email" name="email" id="loginEmail" value="<?= htmlentities($email) ?? '' ?>" required>
+                        <input type="email" name="email" id="loginEmail" value="<?= $email ?? '' ?>" required>
                     </div>
                     <br>
                     <small>L'email utilisé lors de la création de compte</small>
@@ -32,7 +32,7 @@
                     <br>
                     <div class="login_form-password">
                         <label for="password">MOT DE PASSE</label>
-                        <input type="password" name="password" id="loginPassword" value="<?= htmlentities($password) ?? '' ?>" required>
+                        <input type="password" name="password" id="loginPassword" value="<?= $password ?? '' ?>" required>
                     </div>
                     <br>
                     <input type="hidden" name="token" value="<?= Token::generate();?>">

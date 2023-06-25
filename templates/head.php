@@ -7,4 +7,4 @@
 <link href="https://fonts.googleapis.com/css2?family=Basic&family=Source+Sans+Pro:wght@400;700&display=swap" rel="stylesheet">
 <link rel="icon" type="image/png" href="img/favicon/favicon_io/favicon-32x32.png" />
 <link rel="stylesheet" href="css/style.css">
-<title><?= htmlentities($title); ?></title>
+<title><?= htmlspecialchars($title); ?></title>

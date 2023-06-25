@@ -1,8 +1,8 @@
 
-/**********
+/******************
 SHOW-ARTICLE PAGE
 
-***********/
+******************/
 
 .comment_contentWrap {
   background: var(--greenishCyan-100);
@@ -12,14 +12,16 @@ SHOW-ARTICLE PAGE
   width: 50%;
   margin: 1em auto;
 }
-
+.comment_form {
+  padding: 16px;
+}
 .comment_contentWrap p {
   font-size: 1.2rem;
 }
 
-/**********************************************************
+/*****************************************
  BUTTONS FOR ADMIN USE UPDATE AND DELETE
-*********************************************************/
+******************************************/
 
 .article_AdminEdit {
   font-size: 1.5rem;
@@ -36,4 +38,34 @@ SHOW-ARTICLE PAGE
 .article_modify:hover,
 .article_delete:hover {
   border-bottom: 1px solid var(--cyan-100);
+}
+
+
+/******************************************
+ADD_POST PAGE
+*******************************************/
+.main_addPost {
+  padding: 16px;
+}
+
+.addPostFORM{
+  width: 40%;
+}
+
+.comment_form-title,
+.comment_form-lead_sentence,
+.comment_form-content {
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+}
+
+/* MEDIA QUERIES */
+
+@media screen and (max-width: 768px) {
+
+  /* ADD_POST PAGE */
+  .addPostFORM{
+    width: 100%;
+  }
 }
