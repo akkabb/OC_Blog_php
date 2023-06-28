@@ -1,8 +1,8 @@
 # OC_Blog_php 
 # INSTALLATION'S INSTRUCTIONS :
 
-### 1- Download folder  from the repository named OC*Blog*php
-### 2- Move the folder OC*Blog*php inside your MAMP/WAMP folder > htdocs
+### 1- Download folder  from the repository named OC_Blog_php
+### 2- Move the folder OC_Blog_php inside your MAMP/WAMP folder > htdocs
 ### 3- Initialise MAMP/WAMP
 ### 4- Open phpmyadmin and create a new database called My_Blog
 ### 5- Import the SQL file 'import.sql' you will find in the folder you downloaded on Github
