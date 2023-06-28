@@ -43,10 +43,10 @@
                         <h3> écrit par <?= htmlentities($comment->created_by); ?></h3>
                         <p class="comment_display_time"> le : <?= htmlspecialchars($comment->creationDate); ?></p>
                             <span class="comment_Admin_validate">
-                                <a href="index.php?action=submitComment&id=<?=urlencode($comment->id);?>" class="admin_btn_validate">Valider</a>
+                                <a href="index.php?action=submitComment&id=<?= urlencode($comment->id);?>" class="admin_btn_validate">Valider</a>
                             </span>
                             <span class="comment_Admin_delete">
-                                <a href="index.php?action=deleteComment&id=<?=urlencode($comment->id);?>" class="admin_btn_delete">Supprimer</a>
+                                <a href="index.php?action=deleteComment&id=<?= urlencode($comment->id);?>" class="admin_btn_delete">Supprimer</a>
                             </span>
                     </article>
                 <?php } ?>

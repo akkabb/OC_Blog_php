@@ -80,12 +80,14 @@ class UserRepository{
             "INSERT INTO `user`( `username`, `email`, `first_name`, `last_name`, `password`, `role`) 
                 VALUES (:username, :email, :first_name, :last_name, :password, :role )"
         );
+        $passwordHashed = hash("sha256", $password);
         $affectedLines = $statement->execute([
             ':username' => $username, 
             ':email' => $email, 
             ':first_name' => $firstname, 
             ':last_name' => $lastname,
-            ':password' => $password, 
+            ':password' => $passwordHashed, 
+            // ':password' => $password, 
             ':role' => self::USER_TYPE_USER,
         ]);
         $_SESSION['accountCreated'] = $firstname;
@@ -125,12 +127,14 @@ class UserRepository{
      * @param  mixed $email
      * @return void
      */
-    public function loginUser(string $email)
-	{
+    public function loginUser(string $email, string $password)
+	{   
+        $passwordHashed = hash("sha256", $password);
 		$statement = $this->connection->getConnection()->prepare(
-			"SELECT * FROM `user` WHERE `email` = :email"
+			"SELECT * FROM `user` WHERE `email` = :email AND `password` = :password"
 		);
 		$statement->bindValue(":email", $email);
+		$statement->bindValue(":password", $passwordHashed);
 		$statement->execute();
 		$user = $statement->fetch();
     

@@ -16,7 +16,7 @@ function addPostPost($input)
     
     $postRepository = new PostRepository();
     $postRepository->connection = new DatabaseConnection();
-    $post = new \App\Model\Post\Post();
+    // $post = new \App\Model\Post\Post();
 
     $errors = [];
     if (!isset($input['title']) || strlen(trim($input['title'])) < 6) {
@@ -46,7 +46,7 @@ function addPostPost($input)
     $content = $input['content'];
 
     
-    $date = new DateTime();
+    // $date = new DateTime();
 
     // $post->creationBy = intval($_SESSION['id']);
     // $post->creationDate = date('Y-m-d H:i:s');

@@ -20,7 +20,7 @@
                     <br>
                     <label for="email">EMAIL</label>
                     <br>
-                    <input type="email" name="email" id="registerEmail" value="<?= $email ?? '' ?>"required>
+                    <input type="email" name="email" id="registerEmail" value="<?= $email ?? '' ?>" required>
                     <br>
                     <!-- <?php if ($errors['email']) : ?>
                         <p class="text_danger"><?= $errors['email'] ?></p>

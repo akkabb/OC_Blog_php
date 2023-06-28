@@ -53,7 +53,9 @@
   min-height: 100vh;
   align-items: center;
 }
+
 /*HEADER PART*/
+
 header {
   display: flex;
   justify-content: space-between;
@@ -110,9 +112,11 @@ font-weight: bold;
   background-color: var(--cyan-100);
   color: #fff;
 }
+
 /* END MAIL SUCCES */
 
 /* MAIN PART */
+
 main {
   flex-grow: 1;
   background-color: var(--gray-300);
@@ -122,6 +126,7 @@ main {
 }
 
 /* SECTION INTRO */
+
 .catch_phrase {
   background-color: var(--gray-300);
   padding: 2em;
@@ -220,6 +225,7 @@ h2 {
 /* .fa-twitter::before{
   font-family: "Font Awesome 5 Brands"; content: "\f099";
 } */
+
 /* SECTION FORM */
 
 .contact_form {
@@ -279,6 +285,7 @@ footer {
 /**************************************************************************************
 LOGGIN PAGE
 **************************************************************************************/
+
 .main_login {
   display: flex;
   flex-grow: 1;
@@ -297,6 +304,7 @@ LOGGIN PAGE
   align-items: center;
   flex-grow: 1;
 }
+
 .form_login form {
   width: 40%;
 }
@@ -318,6 +326,7 @@ LOGGIN PAGE
 /**************************************************************************************
 REGISTER PAGE
 **************************************************************************************/
+
 .form_register {
   padding: 16px;
 }
@@ -406,7 +415,9 @@ FOOTER
 }
 
 
-/* MEDIA QUERIES */
+/******************************************************************************************************
+                                            MEDIA QUERIES 
+ ******************************************************************************************************/
 
 @media screen and (max-width: 768px) {
   body {

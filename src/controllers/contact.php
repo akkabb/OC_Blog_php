@@ -100,7 +100,7 @@ use PHPMailer\PHPMailer\SMTP;
           throw new Exception("Message non envoyé. Erreur: {$mail->ErrorInfo}");
        }
    } else {
-       error();
+    //    error();
    }
  }
  

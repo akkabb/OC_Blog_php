@@ -29,7 +29,7 @@ class Globals
         return $this->_SERVER;
     }
 
-    public function getSession()
+    public function getSESSION()
     {
         return $this->_SESSION;
     }

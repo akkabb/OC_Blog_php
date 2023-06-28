@@ -78,6 +78,7 @@
                     <input type="hidden" name="token" value="<?= Token::generate();?>">
                     <button type="submit">Envoyer</button>
                 </form>
+
             </section>
             <!-- A consever pour utiliser pour les posts <img src="https://picsum.photos/200/300" alt="test image "> -->
         </main>

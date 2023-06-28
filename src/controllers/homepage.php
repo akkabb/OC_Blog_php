@@ -55,3 +55,4 @@ function homepage()
     }
     require "templates/homepage.php";
 }
+

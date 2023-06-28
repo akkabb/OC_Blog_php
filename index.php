@@ -10,6 +10,7 @@ require_once './src/controllers/submit_comment.php';
 require_once './src/controllers/delete_comment.php';
 require_once './src/controllers/homepage.php';
 require_once './src/controllers/articles.php';
+require_once './src/controllers/superGlobals.php';
 require_once './src/controllers/login.php';
 require_once './src/controllers/logout.php';
 require_once './src/controllers/register.php';
@@ -130,7 +131,8 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
         elseif ($_GET['action'] === 'contactForm') {
             if (isset($_POST)) {
                 contactForm($_POST);
-            }else{
+            }
+            else{
                 error();
             }
         }
