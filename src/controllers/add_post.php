@@ -32,7 +32,6 @@ function addPostPost($input)
     }
 
     if (!empty($errors)) {
-        var_dump($errors);
         require "templates/add_post.php";
         exit();
     }

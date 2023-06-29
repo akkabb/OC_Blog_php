@@ -252,6 +252,10 @@ form {
   text-transform: uppercase;
 }
 
+input {
+  font-size: 1rem;
+}
+
 .form_name {
   display: flex;
   flex-direction: column;

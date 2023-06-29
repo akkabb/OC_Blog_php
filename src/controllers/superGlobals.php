@@ -47,5 +47,4 @@ class Globals
     {
         return $this->_SERVER;
     }
-
 }
