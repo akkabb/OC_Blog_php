@@ -20,12 +20,18 @@ require_once './src/controllers/showArticle.php';
 require_once './src/controllers/admin_page.php';
 require_once './src/controllers/switch_userType.php';
 
+$superGlobals = new Globals;
 
-if (isset($_GET['action']) && $_GET['action'] !== '')
+$get = $superGlobals->getGET();
+$post = $superGlobals->getPOST();
+$server = $superGlobals->getSERVER();
+
+
+if (isset($get['action']) && $get['action'] !== '')
     {
-        if ($_GET['action'] === 'post') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id = $_GET['id'];
+        if ($get['action'] === 'post') {
+            if (isset($get['id']) && $get['id'] > 0) {
+                $id = $get['id'];
                 post($id);
             } else {
                 throw new Exception(('Aucun article'));
@@ -33,104 +39,104 @@ if (isset($_GET['action']) && $_GET['action'] !== '')
     
         } 
         // THIS PART CONCERNS ADMIN ACTIONS
-        elseif ($_GET['action'] === 'admin'){
+        elseif ($get['action'] === 'admin'){
             if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1){
                 admin();
             }else{
                 homepage();
             }
-        } elseif($_GET['action'] === 'addPost'){
-            if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                addPostPost($_POST);
+        } elseif($get['action'] === 'addPost'){
+            if ($server['REQUEST_METHOD'] === 'POST'){
+                addPostPost($post);
             } else {
                 addPostGet();
             }
-        }elseif ($_GET['action'] === 'updateArticle') {
-            if (isset($_GET['id']) && $_GET['id'] > 0){
-                $id = $_GET['id'];
+        }elseif ($get['action'] === 'updateArticle') {
+            if (isset($get['id']) && $get['id'] > 0){
+                $id = $get['id'];
                 $input = null;
-                if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-                    $input = $_POST;
+                if ($server['REQUEST_METHOD'] === 'POST'){
+                    $input = $post;
                 }
                 (new UpdateArticle())->execute($id, $input);
             }else{
                 throw new Exception('Aucun id envoyé');
             }
         }
-        elseif( $_GET['action'] === 'deleteArticle'){
-            if (isset($_GET['id']) && $_GET['id'] > 0){
-                $id = $_GET['id'];
+        elseif( $get['action'] === 'deleteArticle'){
+            if (isset($get['id']) && $get['id'] > 0){
+                $id = $get['id'];
                 deletePost($id);
             }else{
                 error();
             }
         }
-        elseif ($_GET['action'] === 'passAdmin'){
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id = $_GET['id'];
+        elseif ($get['action'] === 'passAdmin'){
+            if (isset($get['id']) && $get['id'] > 0) {
+                $id = $get['id'];
                 (new SwitchToAdmin())->execute($id);
             } else {
                 throw new Exception('Impossible de passer en Admin');
             }
-        }elseif ($_GET['action'] === 'passUser'){
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id = $_GET['id'];
+        }elseif ($get['action'] === 'passUser'){
+            if (isset($get['id']) && $get['id'] > 0) {
+                $id = $get['id'];
                 (new SwitchToUser())->execute($id);
             } else {
                 throw new Exception('Impossible de passer en User');
             }
         }
-        elseif($_GET['action'] === 'list'){
+        elseif($get['action'] === 'list'){
                 displayArticles();
         }
         // THIS PART CONCERNS USERS ACTIONS
-        elseif ($_GET['action'] === 'login'){
+        elseif ($get['action'] === 'login'){
                 login();
-        }elseif ($_GET['action'] === 'logout'){
+        }elseif ($get['action'] === 'logout'){
                 logout();
-        }elseif ($_GET['action'] === 'register'){
+        }elseif ($get['action'] === 'register'){
                 signin();
-        }elseif ($_GET['action'] === 'addUser'){
-            if (isset($_POST)){
-                register($_POST);
+        }elseif ($get['action'] === 'addUser'){
+            if (isset($post)){
+                register($post);
             }else{
                  error();
             }
-        }elseif ($_GET['action'] === 'logUser'){
-            if (isset($_POST)){
-                logUser($_POST);
+        }elseif ($get['action'] === 'logUser'){
+            if (isset($post)){
+                logUser($post);
             }else{
                 error();
             }
         }
         // THIS PART CONCERNS COMMENTS ACTIONS
-        elseif ($_GET['action'] === 'addComment'){
-                if (isset($_GET['id']) && $_GET['id'] > 0) {
-                    $id = $_GET['id'];
+        elseif ($get['action'] === 'addComment'){
+                if (isset($get['id']) && $get['id'] > 0) {
+                    $id = $get['id'];
                     $created_by = $_SESSION['id'];
-                    addComment($id, $_POST);
+                    addComment($id, $post);
                 } else{
                     throw new Exception('Aucun article');
                 }
-        }elseif ($_GET['action'] === 'submitComment'){
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id = $_GET['id'];
+        }elseif ($get['action'] === 'submitComment'){
+            if (isset($get['id']) && $get['id'] > 0) {
+                $id = $get['id'];
                 (new SubmitComment())->execute($id);
             } else{
                 throw new Exception('Impossible de valider le commentaire');
             }
-        }elseif ($_GET['action'] === 'deleteComment') {
-            if (isset($_GET['id']) && $_GET['id'] > 0) {
-                $id = $_GET['id'];
+        }elseif ($get['action'] === 'deleteComment') {
+            if (isset($get['id']) && $get['id'] > 0) {
+                $id = $get['id'];
                 deleteComment($id);
             }else{
                 error();
             }
         }
         // THIS PART CONCERNS CONTACT
-        elseif ($_GET['action'] === 'contactForm') {
-            if (isset($_POST)) {
-                contactForm($_POST);
+        elseif ($get['action'] === 'contactForm') {
+            if (isset($post)) {
+                contactForm($post);
             }
             else{
                 error();

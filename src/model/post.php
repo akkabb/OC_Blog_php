@@ -63,7 +63,7 @@ class PostRepository
             "SELECT post.id, post.title, post.content, post.created_at, post.created_by, user.username, post.lead_sentence 
             FROM `post` 
             INNER JOIN user ON post.created_by = user.id
-            ORDER BY created_at ASC ");
+            ORDER BY created_at DESC ");
     
         $posts = [];
         while (($row = $statement->fetch()))

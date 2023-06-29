@@ -18,19 +18,19 @@
             <span>
                 <?php
                 if (isset($_SESSION['deleteComment'])) {
-                    echo htmlentities($_SESSION['deleteComment']);
+                    echo ($_SESSION['deleteComment']);
                     unset($_SESSION['deleteComment']);
                 }
                 elseif (isset($_SESSION['submitComment'])) {
-                    echo htmlentities($_SESSION['submitComment']);
+                    echo ($_SESSION['submitComment']);
                     unset($_SESSION['submitComment']);
                 }
                 elseif (isset($_SESSION['passAdmin'])) {
-                    echo htmlentities($_SESSION['passAdmin']);
+                    echo ($_SESSION['passAdmin']);
                     unset($_SESSION['passAdmin']);
                 }
                 elseif (isset($_SESSION['passUser'])) {
-                    echo htmlentities($_SESSION['passUser']);
+                    echo ($_SESSION['passUser']);
                     unset($_SESSION['passUser']);
                 }
                 ?>

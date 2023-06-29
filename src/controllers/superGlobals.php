@@ -5,7 +5,6 @@ class Globals
     private $_GET;
     private $_POST;
     private $_SERVER;
-    private  $_SESSION;
 
     public function __construct()
     {
@@ -27,11 +26,6 @@ class Globals
     public function getSERVER()
     {
         return $this->_SERVER;
-    }
-
-    public function getSESSION()
-    {
-        return $this->_SESSION;
     }
 
 }

@@ -14,7 +14,7 @@
                 <?php
                     if (isset($_SESSION['mailsend']))
                     {
-                        echo htmlentities($_SESSION['mailsend']);
+                        echo ($_SESSION['mailsend']);
                         unset($_SESSION['mailsend']);
                     }
                 ?>
