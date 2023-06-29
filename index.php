@@ -27,8 +27,7 @@ $post = $superGlobals->getPOST();
 $server = $superGlobals->getSERVER();
 
 
-if (isset($get['action']) && $get['action'] !== '')
-    {
+if (isset($get['action']) && $get['action'] !== '') {
         if ($get['action'] === 'post') {
             if (isset($get['id']) && $get['id'] > 0) {
                 $id = $get['id'];
