@@ -16,7 +16,7 @@ class Comment
     public int $post;
     public string $title;
     public string $status;
-}
+} 
 
 class CommentRepository
 {

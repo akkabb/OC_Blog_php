@@ -45,10 +45,14 @@ if (isset($get['action']) && $get['action'] !== '') {
                 homepage();
             }
         } elseif($get['action'] === 'addPost'){
-            if ($server['REQUEST_METHOD'] === 'POST'){
-                addPostPost($post);
-            } else {
-                addPostGet();
+            if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 1) {
+                if ($server['REQUEST_METHOD'] === 'POST'){
+                    addPostPost($post);
+                } else {
+                    addPostGet();
+                }
+            }else {
+                homepage();
             }
         }elseif ($get['action'] === 'updateArticle') {
             if (isset($get['id']) && $get['id'] > 0){
@@ -59,7 +63,8 @@ if (isset($get['action']) && $get['action'] !== '') {
                 }
                 (new UpdateArticle())->execute($id, $input);
             }else{
-                throw new Exception('Aucun id envoyé');
+                // throw new Exception('Aucun id envoyé');
+                homepage();
             }
         }
         elseif( $get['action'] === 'deleteArticle'){
@@ -67,7 +72,8 @@ if (isset($get['action']) && $get['action'] !== '') {
                 $id = $get['id'];
                 deletePost($id);
             }else{
-                error();
+                // error();
+                homepage();
             }
         }
         elseif ($get['action'] === 'passAdmin'){
@@ -75,14 +81,16 @@ if (isset($get['action']) && $get['action'] !== '') {
                 $id = $get['id'];
                 (new SwitchToAdmin())->execute($id);
             } else {
-                throw new Exception('Impossible de passer en Admin');
+                // throw new Exception('Impossible de passer en Admin');
+                homepage();
             }
         }elseif ($get['action'] === 'passUser'){
             if (isset($get['id']) && $get['id'] > 0) {
                 $id = $get['id'];
                 (new SwitchToUser())->execute($id);
             } else {
-                throw new Exception('Impossible de passer en User');
+                // throw new Exception('Impossible de passer en User');
+                homepage();
             }
         }
         elseif($get['action'] === 'list'){
